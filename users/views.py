@@ -53,3 +53,4 @@ class RegistrationView(CreateView):
 
 class LoginView(Login):
     template_name = "users/login.html"
+    success_url = "home:home"

@@ -1,35 +1,61 @@
 {% load static %}
 
-<!DOCTYPE html>
+{% load static %}
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static "css/login.css" %}">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="https://cdn.discordapp.com/icons/715958380556058684/773d6583cd1d7aef41e701783d353aef.webp?size=128" type="image/x-icon">
+<meta name="description" itemprop="description"
+        content="Play your playlists and favourites tracks, albums, and artists of YouTube with a Spotify styled UI" />
+    <meta name="keywords"
+        content="convert, convert playlists, transfer, syncing, smart links, free, apple music, streaming services, spotify, youtube" />
+  {% block css %}
+	<link rel="stylesheet" href="{% static "css/login.css" %}">
+  {% endblock %}
+	<title>Youttify</title>
 </head>
+
 <body>
-    <div class="main">
-        <label class="brand"><img src="https://th.bing.com/th/id/R.f7ce343ed66e80d60e87479d2c6753c3?rik=mZlpLMbwFr3BQg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fspotify-logo-png-open-2000.png&ehk=ZCBP9f2uKAkYi2gLrP%2fkO3Tjpcf49Bki%2fwcRu4kBXb0%3d&risl=&pid=ImgRaw&r=0"
-       />Spotify</label>
-        <input type="checkbox" id="chk" aria-hidden="true"/>
-        <div class="singup">
-            <form>
-                <label for="chk" aria-hidden="true" >Sign up</label>
-                <input type="text" name="txt" placeholder="User name" />
-                <input type="email" name="email" placeholder="Email"/>
-                <input type="password" name="pswd" placeholder="Password"/>
-                <button class="button"><a href="./index.html">Sign up</a></button>
+
+
+			<div class="signup_header">
+                <a href="" target="_blank">
+				<img
+                    src="https://cdn.discordapp.com/attachments/768083738848133130/768372618880483328/spotify.svg"></img>
+                    </a>
+            </div>
+        </a>
+        <div class="signup_body">
+            <form class="login_form" method='POST' enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="login-username" class="label">
+                    Email address or username
+                </label>
+
+                <input type="text" class="form_input" pattern="[A-Za-z0-9.@_-e]+" name="username" placeholder="Email address or username" required>
+                <label for="login-username" class="label">
+                    Password
+                </label>
+                <input type="password" class="form_input" name="password" placeholder="Password" required>
+                {% if not case %}
+                <span style="color:#f79862;
+                             padding-bottom:20px;
+                             text-align:center;">Username or password invalid</span>
+                {% endif %}
+                <button class='btn btn_log_in' type="submit">Log in</button>
+                <div class="divider"></div>
+                <p class='label center-align'>Don't have an account?</p>
+            <a class='btn btn_sign_up' href="/signup">Sign Up for spotify</a>
             </form>
         </div>
-        <div class="login">
-            <form>
-                <label for="chk" aria-hidden="true" >Log in</label>
-                <input type="email" name="email" placeholder="Email"/>
-                <input type="password" name="pswd" placeholder="Password"/>
-                <button class="button"><a href="./index.html"></a>Log in</button>
-            </form>
-        </div>
-    </div>
+
+        <!-- <div class="signin_body">
+
+        </div> -->
+
+    </body>
 </body>
+
 </html>
