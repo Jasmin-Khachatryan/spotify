@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static "css/login.css" %}">
+</head>
+<body>
+    <div class="main">
+        <label class="brand"><img src="https://th.bing.com/th/id/R.f7ce343ed66e80d60e87479d2c6753c3?rik=mZlpLMbwFr3BQg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fspotify-logo-png-open-2000.png&ehk=ZCBP9f2uKAkYi2gLrP%2fkO3Tjpcf49Bki%2fwcRu4kBXb0%3d&risl=&pid=ImgRaw&r=0"
+       />Spotify</label>
+        <input type="checkbox" id="chk" aria-hidden="true"/>
+        <div class="singup">
+            <form>
+                <label for="chk" aria-hidden="true" >Sign up</label>
+                <input type="text" name="txt" placeholder="User name" />
+                <input type="email" name="email" placeholder="Email"/>
+                <input type="password" name="pswd" placeholder="Password"/>
+                <button class="button"><a href="./index.html">Sign up</a></button>
+            </form>
+        </div>
+        <div class="login">
+            <form>
+                <label for="chk" aria-hidden="true" >Log in</label>
+                <input type="email" name="email" placeholder="Email"/>
+                <input type="password" name="pswd" placeholder="Password"/>
+                <button class="button"><a href="./index.html"></a>Log in</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
