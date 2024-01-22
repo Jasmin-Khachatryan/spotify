@@ -4,20 +4,21 @@
 {% block content %}
 
 
+
  <div class="spotify-playlists">
             <h2>Focus</h2>
             <div class="list">
-
+   {%for music in musics %}
 <div class="item">
-                    <img src="https://th.bing.com/th/id/OIP.aimXr7-V7TOcy9yHReqUBAHaE5?rs=1&pid=ImgDetMain
-                    " />
+                   <a href="{% url "music:detail" music.pk %}" ><img src={{ music.image.url }}/></a>
+
                     <div class="play">
                         <span class="fa fa-play"></span>
                     </div>
-                    <h4>Deep Focus</h4>
-                    <p>Keep calm and focus with ambient and pos...</p>
+                    <h4>{{ music.name }}</h4>
+                    <p>{{music.description}}</p>
                 </div>
-
+{% endfor %}
 
             </div>
         </div>

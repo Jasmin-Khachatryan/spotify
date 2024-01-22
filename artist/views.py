@@ -1,3 +1,8 @@
 # from django.shortcuts import render
 
-# Create your views here.
+from django.views.generic import TemplateView
+
+
+class ArtistDetailView(TemplateView):
+
+    template_name = "artist/artist.html"

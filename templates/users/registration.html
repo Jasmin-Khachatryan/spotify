@@ -29,7 +29,7 @@
 
 
         <div class="signup_header">
-            <a href="" target="_blank">
+            <a href="{% url "home:home" %}" target="">
             <img src="https://cdn.discordapp.com/attachments/768083738848133130/768372618880483328/spotify.svg"></img>
             </a>
         </div>
@@ -39,17 +39,13 @@
             {% csrf_token %}
 
             <span class='label signup-title center-align'>Sign up for free to start listening.</span>
-            <label for="sign-up-username" class="label">
-                What's your name?{% if not username %}
-                <span style="color:#f79862;">Username already exists</span>
-            {% endif %}
-            </label>
 
-            <input type="text" class="form_input" name="username" pattern="[A-Za-z]+" placeholder="Enter your name." required>
+
+
 
 
             <label for="sign-up-email" class="label">
-                What's your email?{% if not email %}
+                What's your email?{% if email %}
                 <span style="color:#f79862;">Email already exists</span>
             {% endif %}
             </label>
@@ -71,7 +67,7 @@
 
             <button class='btn btn_log_in' type="submit">Sign up</button>
             <div class="divider"></div>
-            <p class='label center-align'>Already have an account? <a href="/login">Log in</a>.</p>
+            <p class='label center-align'>Already have an account? <a href="{% url "user:login" %}">Log in</a>.</p>
         </form>
     </div>
 

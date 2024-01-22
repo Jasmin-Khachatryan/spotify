@@ -1,0 +1,29 @@
+
+{% block player %}
+
+
+
+
+<link href="button.css" rel="stylesheet" />
+<div class="bottom margin">
+    <input type="range" name="range" id="ProgressBar" min="0" max="100" />
+    <div class="songinfo-container">
+        <div class="songinfo">
+            <span id="masterSongName"> CNCO - Tan Facil</span>
+        </div>
+        <div class="songinfo-img">
+            <img src="https://iscale.iheart.com/catalog/artist/31116368" alt="artist photo" id="gif" />
+        </div>
+        <div class="icon">
+            <i class="fas fa-2x fa-step-backward" id="previous"></i>
+            <i class="fa fa-2x fa-play-circle" aria-hidden="true"></i>
+            <i class="fas fa-2x fa-step-forward" id="next"></i>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
+<!--<script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>-->
+</body>

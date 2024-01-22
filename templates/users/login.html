@@ -1,6 +1,5 @@
 {% load static %}
 
-{% load static %}
 <html lang="en">
 
 <head>
@@ -11,9 +10,9 @@
         content="Play your playlists and favourites tracks, albums, and artists of YouTube with a Spotify styled UI" />
     <meta name="keywords"
         content="convert, convert playlists, transfer, syncing, smart links, free, apple music, streaming services, spotify, youtube" />
-  {% block css %}
+
 	<link rel="stylesheet" href="{% static "css/login.css" %}">
-  {% endblock %}
+
 	<title>Youttify</title>
 </head>
 
@@ -21,7 +20,7 @@
 
 
 			<div class="signup_header">
-                <a href="" target="_blank">
+                <a href="{% url "home:home" %}" target="">
 				<img
                     src="https://cdn.discordapp.com/attachments/768083738848133130/768372618880483328/spotify.svg"></img>
                     </a>
@@ -31,7 +30,7 @@
             <form class="login_form" method='POST' enctype="multipart/form-data">
                 {% csrf_token %}
                 <label for="login-username" class="label">
-                    Email address or username
+                    Email address
                 </label>
 
                 <input type="text" class="form_input" pattern="[A-Za-z0-9.@_-e]+" name="username" placeholder="Email address or username" required>
@@ -42,18 +41,15 @@
                 {% if not case %}
                 <span style="color:#f79862;
                              padding-bottom:20px;
-                             text-align:center;">Username or password invalid</span>
+                             text-align:center;">Forgot Password?</span>
                 {% endif %}
                 <button class='btn btn_log_in' type="submit">Log in</button>
                 <div class="divider"></div>
                 <p class='label center-align'>Don't have an account?</p>
-            <a class='btn btn_sign_up' href="/signup">Sign Up for spotify</a>
+            <a class='btn btn_sign_up' href="{% url "user:registration" %}">Sign Up for spotify</a>
             </form>
         </div>
 
-        <!-- <div class="signin_body">
-
-        </div> -->
 
     </body>
 </body>

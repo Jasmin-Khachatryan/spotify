@@ -1,6 +1,14 @@
 def upload_music_image(instance, filename):
-    return f"{instance.title}/{filename}"
+    return f"{instance.name}/{filename}"
+
+
+def upload_music_cover_image(instance, filename):
+    return f"{instance.name}/{filename}"
 
 
 def upload_artist_image(instance, filename):
-    return f"{instance.first_name}_{instance.last_name}/{filename}"
+    return f"{instance.pseudonym}/{filename}"
+
+
+def upload_artist_cover_image(instance, filename):
+    return f"{instance.pseudonym}/{filename}"

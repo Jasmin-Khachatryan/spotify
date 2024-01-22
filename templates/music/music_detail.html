@@ -1,96 +1,15 @@
+{% extends "base.html" %}
 {% load static %}
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<link rel="stylesheet" href="{% static "css/artist.css" %}">
-<div class="sidebar">
-    <div class="logo">
-        <a href="#">
-            <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png"
-                alt="Logo" />
-        </a>
-    </div>
 
-    <div class="navigation">
-        <ul>
-            <li>
-                <a href="#">
-                    <span class="fa fa-home"></span>
-                    <span>Home</span>
-                </a>
-            </li>
 
-            <li>
-                <a href="#">
-                    <span class="fa fa-search"></span>
-                    <span>Search</span>
-                </a>
-            </li>
 
-            <li>
-                <a href="#">
-                    <span class="fa fas fa-book"></span>
-                    <span>Your Library</span>
-                </a>
-            </li>
-        </ul>
-    </div>
 
-    <div class="navigation">
-        <ul>
-            <li>
-                <a href="#">
-                    <span class="fa fas fa-plus-square"></span>
-                    <span>Create Playlist</span>
-                </a>
-            </li>
+{% block content %}
 
-            <li>
-                <a href="#">
-                    <span class="fa fas fa-heart"></span>
-                    <span>Liked Songs</span>
-                </a>
-            </li>
-        </ul>
-    </div>
 
-    <div class="policies">
-        <ul>
-            <li>
-                <a href="#">Cookies</a>
-            </li>
-            <li>
-                <a href="#">Privacy</a>
-            </li>
-        </ul>
-    </div>
-</div>
 
-<div class="topbar">
-    <div class="search-box">
-        <button class="btn-search"><i class="fas fa-search"></i></button>
-        <input type="text" class="input-search" placeholder="Type to Search...">
-      </div>
-
-    <div class="navbar">
-        <ul>
-            <li>
-                <a href="#">Premium</a>
-            </li>
-            <li>
-                <a href="#">Support</a>
-            </li>
-            <li>
-                <a href="#">Download</a>
-            </li>
-            <li class="divider">|</li>
-            <li>
-                <a href="#">Sign Up</a>
-            </li>
-        </ul>
-        <button type="button">Log In</button>
-    </div>
-</div>
-
+<link rel="stylesheet"  href="{% static "css/music_detail.css" %}">
 
     <div class="content__middle">
 
@@ -102,15 +21,16 @@
 
             <div class="profile__img">
 
-              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/g_eazy_propic.jpg" alt="G-Eazy" />
+              <img src={{ music.image.url }} />
 
             </div>
 
             <div class="artist__info__meta">
 
-              <div class="artist__info__type">Artist</div>
 
-              <div class="artist__info__name">G-Eazy</div>
+              <div class="artist__info__type">jhvjhjgvjhvjvjhvv</div>
+
+              <div class="artist__info__name">{{ music.name }}</div>
 
               <div class="artist__info__actions">
 
@@ -134,7 +54,7 @@
 
           <div class="artist__listeners">
 
-            <div class="artist__listeners__count">15,662,810</div>
+            <div class="artist__listeners__count">{{ music.listens }}</div>
 
             <div class="artist__listeners__label">Monthly Listeners</div>
 
@@ -583,9 +503,9 @@
             </div>
 
 
-            <!-- About // Coming Soon-->
-              <!--<div role="tabpanel" class="tab-pane" id="artist-about">About</div>-->
-            <!-- / -->
+<!--             About // Coming Soon-->
+<!--              <div role="tabpanel" class="tab-pane" id="artist-about">About</div>-->
+<!--             / -->
 
           </div>
 
@@ -596,4 +516,31 @@
     </div>
 
 
+{% endblock %}
 
+
+        {% block player %}
+        <link href="button.css" rel="stylesheet" />
+<div class="bottom margin">
+    <input type="range" name="range" id="ProgressBar" min="0" max="100" />
+    <div class="songinfo-container">
+        <div class="songinfo">
+            <span id="masterSongName"> CNCO - Tan Facil</span>
+        </div>
+        <div class="songinfo-img">
+            <img src="https://iscale.iheart.com/catalog/artist/31116368" alt="artist photo" id="gif" />
+        </div>
+        <div class="icon">
+            <i class="fas fa-2x fa-step-backward" id="previous"></i>
+            <i class="fa fa-2x fa-play-circle" aria-hidden="true"></i>
+            <i class="fas fa-2x fa-step-forward" id="next"></i>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--<script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>-->
+</body>
+{% endblock %}

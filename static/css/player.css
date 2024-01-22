@@ -1,0 +1,51 @@
+
+.bottom {
+    height: 8%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: #23232e;
+    border-radius: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  #ProgressBar {
+    width: 50%;
+  }
+
+  .bottom .icon img {
+    width: 2rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+
+  .songinfo-container {
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.songinfo {
+    position: absolute;
+    margin-left:-30%;
+}
+
+.songinfo-img {
+    position: absolute;
+    left: 20px;
+    bottom: 10%;
+    display: flex;
+    align-items: center;
+}
+
+.songinfo-img img {
+  object-fit: cover;
+  height: 45px;
+  width: 50px;
+}
+.icon{
+    cursor:pointer;
+}

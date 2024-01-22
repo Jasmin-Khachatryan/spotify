@@ -4,7 +4,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://th.bing.com/th/id/R.f7ce343ed66e80d60e87479d2c6753c3?rik=mZlpLMbwFr3BQg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fspotify-logo-png-open-2000.png&ehk=ZCBP9f2uKAkYi2gLrP%2fkO3Tjpcf49Bki%2fwcRu4kBXb0%3d&risl=&pid=ImgRaw&r=0"
       type="image/x-icon" sizes="64x64">
@@ -18,9 +17,10 @@
 
 
 <body>
+
     <div class="sidebar">
         <div class="logo">
-            <a href="#">
+             <a href="{% url "home:home" %}">
                 <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png"
                     alt="Logo" />
             </a>
@@ -82,6 +82,7 @@
 
     </div>
 
+
     <div class="main-container">
         <div class="topbar">
             <div class="prev-next-buttons">
@@ -103,8 +104,8 @@
                     <li class="divider">|</li>
                     <li>
                         <a href="{% url "user:registration" %}">
-                        <button type="submit"> Sign Up</button>
-                        </a>
+                        Sign Up</a>
+
                     </li>
                 </ul>
                 <a href="{% url "user:login" %}">
@@ -113,8 +114,7 @@
             </div>
         </div>
 
-        <div class="spotify-playlists">
-            <h2>Spotify Playlists</h2>
+
 
 
 
@@ -133,8 +133,8 @@
            <div class="footer-col">
              <h4>company</h4>
              <ul>
-               <li><a href="#">about us</a></li>
-               <li><a href="#">our services</a></li>
+               <li><a href="{% url "home:about_us" %}">about us</a></li>
+               <li><a href="https://www.lifeatspotify.com">our services</a></li>
                <li><a href="#">privacy policy</a></li>
                <li><a href="#">affiliate program</a></li>
              </ul>
@@ -142,8 +142,8 @@
            <div class="footer-col">
              <h4>get help</h4>
              <ul>
-               <li><a href="#">FAQ</a></li>
-               <li><a href="#">shipping</a></li>
+               <li><a href="{% url "home:FAQ" %}">FAQ</a></li>
+               <li><a href="https://artists.spotify.com/ru/home">shipping</a></li>
                <li><a href="#">returns</a></li>
                <li><a href="#">order status</a></li>
                <li><a href="#">payment options</a></li>
@@ -153,7 +153,7 @@
              <h4>online shop</h4>
              <ul>
                <li><a href="#">watch</a></li>
-               <li><a href="#">bag</a></li>
+               <li><a href="{% url "artist:artist_detail" %}">bag</a></li>
                <li><a href="#">shoes</a></li>
                <li><a href="#">dress</a></li>
              </ul>
@@ -170,7 +170,7 @@
          </div>
         </div>
      </footer>
+        {% block player %} {% endblock %}
 
     <script src="https://kit.fontawesome.com/23cecef777.js" crossorigin="anonymous"></script>
 </body>
-
