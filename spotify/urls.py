@@ -8,7 +8,8 @@ urlpatterns = [
     path("", include("home.urls", namespace="home")),
     path("user/", include("users.urls", namespace="user")),
     path("music/", include("music.urls", namespace="music")),
-    path("artist/", include("artist.urls", namespace="artist"))
+    path("artist/", include("artist.urls", namespace="artist")),
+    path("__debug__/", include("debug_toolbar.urls")),
 
 ]
 
