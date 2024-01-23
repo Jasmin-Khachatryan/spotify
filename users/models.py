@@ -31,6 +31,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     image = models.ImageField(upload_to="users/images/")
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    is_premium_user = models.BooleanField(default=False)
+    is_artist = models.BooleanField(default=False)
 
     objects = UserManager()
     USERNAME_FIELD = "email"

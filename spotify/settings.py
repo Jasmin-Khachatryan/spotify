@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "crispy_forms",
+    "crispy_bootstrap5",
     "home.apps.HomeConfig",
     "music.apps.MusicConfig",
     "artist.apps.ArtistConfig",
@@ -111,6 +113,10 @@ USE_I18N = True
 
 USE_TZ = True
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -133,6 +139,7 @@ AUTH_USER_MODEL = "users.User"
 
 LOGIN_URL = "user:login"
 LOGIN_REDIRECT_URL = "home:home"
+LOGOUT_REDIRECT_URL = "home:home"
 
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

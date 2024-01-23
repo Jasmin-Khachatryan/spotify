@@ -12,7 +12,16 @@ class EmailForm(forms.Form):
 
 
 class RegistrationForm(UserCreationForm):
+    is_artist = forms.BooleanField(initial=False, required=False)
 
     class Meta:
         model = User
-        fields = ("email", "password1", "password2")
+        fields = ("email", "password1", "password2", "is_artist")
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.is_artist = self.cleaned_data['is_artist']
+
+        if commit:
+            user.save()
+        return user

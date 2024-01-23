@@ -1,13 +1,18 @@
-from django.template.loader import render_to_string
-from django.contrib.sites.shortcuts import get_current_site
-from django.core.mail import send_mail, EmailMessage
-from django.views.generic import FormView, CreateView
+# from django.template.loader import render_to_string
+# from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import send_mail
+from django.views.generic import FormView
 from django.contrib.auth.views import LoginView as Login
+from django.contrib.auth.views import LogoutView as Logout
 from django.conf import settings
-from .forms import EmailForm, RegistrationForm
+from .forms import EmailForm
 from django.contrib.auth import get_user_model
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView
+from .forms import RegistrationForm
 
-from .generate_token import account_activation_token
+
+# from .generate_token import account_activation_token
 
 User = get_user_model()
 
@@ -26,31 +31,43 @@ class EmailView(FormView):
                   recipient_list=[email])
         return response
 
+# class RegistrationView(CreateView):
+#     form_class = RegistrationForm
+#     model = User
+#     success_url = '/'
+#     template_name = "users/registration.html"
+#
+#     def form_valid(self, form):
+#         response = super().form_valid(form)
+#         subject = "Authenticate your Profile"
+#         user = self.object
+#         user.is_active = False
+#         token = account_activation_token.make_token(user)
+#         message = render_to_string("users/authentication.html",
+#                                    {"user": user,
+#                                     "domain": get_current_site(self.request),
+#                                     "token": token})
+#         email = EmailMessage(subject=subject, body=message,
+#                              from_email=settings.EMAIL_HOST_USER,
+#                              to=[user.email])
+#         email.send(fail_silently=False)
+#
+#         return response
+
 
 class RegistrationView(CreateView):
     form_class = RegistrationForm
-    model = User
-    success_url = '/'
     template_name = "users/registration.html"
+    success_url = reverse_lazy("home:home")
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        subject = "Authenticate your Profile"
-        user = self.object
-        user.is_active = False
-        token = account_activation_token.make_token(user)
-        message = render_to_string("users/authentication.html",
-                                   {"user": user,
-                                    "domain": get_current_site(self.request),
-                                    "token": token})
-        email = EmailMessage(subject=subject, body=message,
-                             from_email=settings.EMAIL_HOST_USER,
-                             to=[user.email])
-        email.send(fail_silently=False)
-
         return response
 
 
 class LoginView(Login):
     template_name = "users/login.html"
-    success_url = "home:home"
+
+
+class LogoutView(Logout):
+    pass
