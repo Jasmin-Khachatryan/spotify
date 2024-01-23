@@ -379,7 +379,7 @@
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-}
+}f
 .overview__albums__head .view-type {
   color: white;
   margin-bottom: 4px;
@@ -464,6 +464,7 @@
 }
 .media-cards .media-card__footer {
   display: block;
+  margin-left:10%;
   background: #282828;
   padding: 15px;
   color: white;

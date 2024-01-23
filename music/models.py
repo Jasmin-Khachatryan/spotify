@@ -1,5 +1,7 @@
 from django.db import models
 from helpers.upload_image import upload_music_image, upload_music_cover_image
+from users.models import User
+# from artist.models import Artist
 
 
 class Category(models.Model):
@@ -23,5 +25,27 @@ class Music(models.Model):
     listens = models.IntegerField(default=0)
     file = models.FileField(upload_to="music/", null=True, blank=True)
 
+    class Meta:
+        ordering = ['-created_at']
+
     def __str__(self):
         return self.name
+
+
+class PlaylistSong(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    song_title = models.CharField(max_length=200)
+    song_youtube_id = models.CharField(max_length=20)
+    song_albums = models.CharField(max_length=255)
+    song_dur = models.CharField(max_length=7)
+    song_channel = models.CharField(max_length=100)
+    song_date_added = models.CharField(max_length=12)
+
+    def __str__(self):
+        return f"Title = {self.song_title}, Date = {self.song_date_added}"
+
+
+# class Album(models.Model):
+#     name = models.CharField(max_length=20)
+#     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+#     music = models.ManyToManyField(Music, related_name="album_music")
