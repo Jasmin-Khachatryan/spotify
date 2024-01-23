@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "debug_toolbar",
     "crispy_forms",
     "crispy_bootstrap5",
     "home.apps.HomeConfig",
@@ -44,6 +45,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "spotify.urls"
@@ -65,6 +67,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "spotify.wsgi.application"
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 
 # Database
