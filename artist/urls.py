@@ -5,6 +5,6 @@ from django.urls import path
 app_name = "artist"
 
 urlpatterns = [
-    path("", ArtistDetailView.as_view(), name="artist_detail"),
+    path("<int:pk>/", ArtistDetailView.as_view(), name="artist_detail"),
 
 ]

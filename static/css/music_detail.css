@@ -15,7 +15,7 @@
   height: 320px;
   border-bottom: 1px solid #282828;
   position: relative;
-  background-image: url(https://th.bing.com/th/id/R.9d764c10b535f7f373141b4cc9e3ce5f?rik=wbFcgyqhq2A0Gg&riu=http%3a%2f%2fgetwallpapers.com%2fwallpaper%2ffull%2f2%2fa%2f5%2f1457282-top-song-wallpapers-1920x1080-for-full-hd.jpg&ehk=R2pguuvhOGuyB894DnVYja0mTLulc%2f1WAcBjJJdVtQ8%3d&risl=&pid=ImgRaw&r=0);
+  background: linear-gradient(transparent,rgba(0,0,0,.5)), rgb(70, 62, 118)
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;

@@ -1,5 +1,5 @@
 from django.db import models
-from helpers.upload_image import upload_music_image, upload_music_cover_image
+from helpers.upload_image import upload_music_image, upload_music_cover_image, upload_album_image
 from users.models import User
 # from artist.models import Artist
 
@@ -45,7 +45,12 @@ class PlaylistSong(models.Model):
         return f"Title = {self.song_title}, Date = {self.song_date_added}"
 
 
-# class Album(models.Model):
-#     name = models.CharField(max_length=20)
-#     artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
-#     music = models.ManyToManyField(Music, related_name="album_music")
+class Album(models.Model):
+    name = models.CharField(max_length=20)
+    category = models.ForeignKey(Category, on_delete=models.PROTECT)
+    music = models.ManyToManyField(Music, related_name="album_music")
+    image = models.ImageField(upload_to=upload_album_image, null=True, blank=True)
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
