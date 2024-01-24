@@ -11,14 +11,19 @@
         <div class="list">
             {% for album in album_chunk %}
                 <div class="item">
-                    <a href="{% url 'music:album_detail' album.pk %}">
+                    <a href="{% url "music:album_detail" album.pk %}">
                         <img src="{{ album.image.url }}" />
-                    </a>
+
                     <div class="play">
                         <span class="fa fa-play"></span>
+
                     </div>
+
+
                     <h4>{{ album.name }}</h4>
+                    </a>
                     <p>{{ album.description }}</p>
+
                 </div>
             {% endfor %}
         </div>

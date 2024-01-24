@@ -97,12 +97,16 @@
                         <a href="#">Premium</a>
                     </li>
                     <li>
-                        <a href="{% url "user:Logout" %}">Support</a>
+                        <a href="">Support</a>
                     </li>
                     <li>
                         <a href="#">Download</a>
+
                     </li>
+
+                     {% if not request.user.is_authenticated %}
                     <li class="divider">|</li>
+
                     <li>
                         <a href="{% url "user:registration" %}">
                         Sign Up</a>
@@ -111,7 +115,16 @@
                 </ul>
                 <a href="{% url "user:login" %}">
                 <button type="button">Log In</button>
+
+                {% else %}
+                </ul>
+
+                 {% csrf_token %}
+                <a href="{% url "user:Logout" %}">
+                <button type="button">Log out</button>
                 </a>
+                     form>
+                {% endif %}
             </div>
         </div>
 

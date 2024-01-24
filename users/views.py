@@ -69,5 +69,18 @@ class LoginView(Login):
     template_name = "users/login.html"
 
 
+
 class LogoutView(Logout):
-    pass
+    http_method_names = ['post']
+
+    def get_next_page(self):
+        return super().get_next_page()
+
+    def dispatch(self, request, *args, **kwargs):
+
+        response = super().dispatch(request, *args, **kwargs)
+        return response
+
+    def post(self, request, *args, **kwargs):
+
+        return super().post(request, *args, **kwargs)
