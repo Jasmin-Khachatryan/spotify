@@ -15,7 +15,7 @@
 
       <div class="artist is-verified">
 
-        <div class="artist__header">
+        <div class="artist__header" style="background-image: url('{{ music.cover_image.url }}');">>
 
           <div class="artist__info">
 
@@ -27,8 +27,11 @@
 
             <div class="artist__info__meta">
 
-
-              <div class="artist__info__type">jhvjhjgvjhvjvjhvv</div>
+          {% for artist in music.artists.all %}
+              <a href="{% url "artist:artist_detail" artist.pk %}">
+              <div class="artist__info__type">{{ artist.pseudonym }}</div>
+              </a>
+              {% endfor %}
 
               <div class="artist__info__name">{{ music.name }}</div>
 

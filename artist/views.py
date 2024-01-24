@@ -1,8 +1,10 @@
 # from django.shortcuts import render
+from .models import Artist
+from django.views.generic import DetailView
 
-from django.views.generic import TemplateView
 
-
-class ArtistDetailView(TemplateView):
-
+class ArtistDetailView(DetailView):
+    model = Artist
     template_name = "artist/artist.html"
+    context_object_name = "artists"
+    pk_url_kwarg = "pk"

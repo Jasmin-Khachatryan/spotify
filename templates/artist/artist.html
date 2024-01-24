@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load humanize %}
 
 <link rel="stylesheet" href="{% static "css/artist.css" %}">
 {% block content %}
@@ -9,13 +10,15 @@
 
       <div class="artist is-verified">
 
-        <div class="artist__header">
+        <div class="artist__header" style="background-image: url('{{ artists.cover_image.url }}');">>
+
+
 
           <div class="artist__info">
 
             <div class="profile__img">
 
-              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/g_eazy_propic.jpg" alt="G-Eazy" />
+              <img src="{{ artists.image.url }}"  />
 
             </div>
 
@@ -23,7 +26,7 @@
 
               <div class="artist__info__type">Artist</div>
 
-              <div class="artist__info__name">G-Eazy</div>
+              <div class="artist__info__name">{{artists.pseudonym}}</div>
 
               <div class="artist__info__actions">
 
@@ -31,7 +34,7 @@
                   Play
                 </button>
 
-                <button class="button-light">ADD</button>
+                <button class="button-light">Follow</button>
 
                 <button class="button-light more">
                     <i class="fas fa-heart fa-9x" style="color: #34a247; font-size: 13px; margin-left:6px;"></i>
@@ -47,9 +50,9 @@
 
           <div class="artist__listeners">
 
-            <div class="artist__listeners__count">15,662,810</div>
+            <div class="artist__listeners__count">{{ artists.followers|intcomma  }}</div>
 
-            <div class="artist__listeners__label">Monthly Listeners</div>
+            <div class="artist__listeners__label">Followers</div>
 
           </div>
 
@@ -77,13 +80,6 @@
                 <img src="http://zblogged.com/wp-content/uploads/2015/11/17.jpg" alt="" />
               </a>
 
-              <a href="#">
-                <img src="http://zblogged.com/wp-content/uploads/2015/11/5.png" alt="" />
-              </a>
-
-              <a href="#">
-                <img src="http://cdn.devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg" alt="" />
-              </a>
 
             </div>
 
@@ -102,30 +98,41 @@
 
                 <div class="overview__artist">
 
-                  <!-- Latest Release-->
-                  <div class="section-title">Latest relisd</div>
 
-                  <div class="latest-release">
+{% if artists.music.all %}
+    {% with latest_music=artists.music.all|first %}
+        <div class="section-title">Latest Released</div>
 
-                    <div class="latest-release__art">
+      <a href="{% url "music:detail" latest_music.pk %}">
 
-                      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="When It's Dark Out" />
+        <div class="latest-release">
 
-                    </div>
+            <div class="latest-release__art">
+                <img src="{{ latest_music.image.url }}" alt="{{ latest_music.name }}" />
+            </div>
 
-                    <div class="latest-release__song">
+            <div class="latest-release__song">
 
-                      <div class="latest-release__song__title">Drifting (Track Commentary)</div>
+                <div class="latest-release__song__title">{{ latest_music.name }}</div>
 
-                      <div class="latest-release__song__date">
+                <div class="latest-release__song__date">
+                    <span class="day">{{ latest_music.created_at.day }}</span>
+                    <span class="month">{{ latest_music.created_at|date:"F" }}</span>
+                    <span class="year">{{ latest_music.created_at.year }}</span>
 
-                        <span class="day">4</span>
+                </div>
 
-                        <span class="month">December</span>
+</a>
 
-                        <span class="year">2015</span>
 
-                      </div>
+            </div>
+
+        </div>
+    {% endwith %}
+{% else %}
+    <p>{{ artist.first_name }} {{ artist.last_name }} has not released any songs yet.</p>
+{% endif %}
+
 
                     </div>
 
@@ -134,18 +141,20 @@
 
                   <!-- Popular-->
                   <div class="section-title">Popular</div>
+      {% for song in artists.music.all %}
+              <a href="{% url "music:detail" song.pk %}">  <div class="tracks">
 
-                  <div class="tracks">
+
 
                     <div class="track">
 
                       <div class="track__art">
 
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="When It's Dark Out" />
+                        <img src="{{ song.image.url }}" alt="When It's Dark Out" />
 
                       </div>
 
-                      <div class="track__number">1</div>
+                      <div class="track__number">{{ forloop.counter }}</div>
 
                       <div class="track__added">
 
@@ -153,131 +162,20 @@
 
                       </div>
 
-                      <div class="track__title">Me, Myself & I</div>
+                      <div class="track__title">{{ song.name }}</div>
 
                       <div class="track__explicit">
 
-                        <span class="label">Explicit</span>
+                        <span class="label">{{ song.created_at.year }}</span>
 
                       </div>
 
-                      <div class="track__plays">147,544,165</div>
+                      <div class="track__plays">{{ song.listens|intcomma}}</div>
 
-                    </div>
-
-                    <div class="track">
-
-                      <div class="track__art">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/tth.jpg" alt="These Things Happen" />
-
-                      </div>
-
-                      <div class="track__number">2</div>
-
-                      <div class="track__added">
-
-                        <i class="ion-plus not-added"></i>
-
-                      </div>
-
-                      <div class="track__title">I Mean It</div>
-
-                      <div class="track__explicit">
-
-                        <span class="label">Explicit</span>
-
-                      </div>
-
-                      <div class="track__plays">74,568,782</div>
-
-                    </div>
-
-                    <div class="track">
-
-                      <div class="track__art">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="When It's Dark Out" />
-
-                      </div>
-
-                      <div class="track__number">3</div>
-
-                      <div class="track__added">
-
-                        <i class="ion-checkmark-round added"></i>
-
-                      </div>
-
-                      <div class="track__title">Calm Down</div>
-
-                      <div class="track__explicit">
-
-                        <span class="label">Explicit</span>
-
-                      </div>
-
-                      <div class="track__plays">13,737,506</div>
-
-                    </div>
-
-                    <div class="track">
-
-                      <div class="track__art">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="When It's Dark Out" />
-
-                      </div>
-
-                      <div class="track__number">4</div>
-
-                      <div class="track__added">
-
-                        <i class="ion-plus not-added"></i>
-
-                      </div>
-
-                      <div class="track__title">Some Kind Of Drug</div>
-
-                      <div class="track__explicit">
-
-                        <span class="label">Explicit</span>
-
-                      </div>
-
-                      <div class="track__plays">12,234,881</div>
-
-                    </div>
-
-                    <div class="track">
-
-                      <div class="track__art">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/tth.jpg" alt="These Things Happen" />
-
-                      </div>
-
-                      <div class="track__number">5</div>
-
-                      <div class="track__added">
-
-                        <i class="ion-checkmark-round added"></i>
-
-                      </div>
-
-                      <div class="track__title">Let's Get Lost</div>
-
-                      <div class="track__explicit">
-
-                        <span class="label">Explicit</span>
-
-                      </div>
-
-                      <div class="track__plays">40,882,954</div>
-
-                    </div>
+                    </div></a>
 
 
+{% endfor %}
 
                 <div class="overview__related">
 
@@ -388,6 +286,7 @@
                 </div>
 
               </div>
+
 
             </div>
              <!-- Related Artists -->
