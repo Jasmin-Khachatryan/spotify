@@ -1,4 +1,4 @@
-from .views import MusicDetailView, LikedMusicView
+from .views import MusicDetailView, LikedMusicView, AlbumDetailView
 from django.urls import path
 
 
@@ -7,5 +7,6 @@ app_name = "music"
 urlpatterns = [
     path("detail/<int:pk>/", MusicDetailView.as_view(), name="detail"),
     path("liked/", LikedMusicView.as_view(), name="liked_songs"),
+    path("album/<int:pk>/", AlbumDetailView.as_view(), name="album_detail")
 
 ]

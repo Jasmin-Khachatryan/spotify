@@ -1,5 +1,5 @@
 # from django.shortcuts import render
-from .models import Music
+from .models import Music, Album
 from django.views.generic import DetailView, ListView
 
 
@@ -14,3 +14,10 @@ class LikedMusicView(ListView):
     model = Music
     template_name = "music/likedsong.html"
     context_object_name = "musics"
+
+
+class AlbumDetailView(DetailView):
+    model = Album
+    template_name = "music/album_detail.html"
+    pk_url_kwarg = "pk"
+    context_object_name = "albums"

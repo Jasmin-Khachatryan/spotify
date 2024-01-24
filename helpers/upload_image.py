@@ -12,3 +12,7 @@ def upload_artist_image(instance, filename):
 
 def upload_artist_cover_image(instance, filename):
     return f"{instance.pseudonym}/{filename}"
+
+
+def upload_album_image(instance, filename):
+    return f"{instance.name}/{filename}"
