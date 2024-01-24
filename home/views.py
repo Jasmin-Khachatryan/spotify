@@ -18,5 +18,3 @@ class FAQView(TemplateView):
     template_name = "home/FAQ.html"
 
 
-class LikedMusicView(TemplateView):
-    template_name = "home/likedsong.html"
