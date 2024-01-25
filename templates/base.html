@@ -12,7 +12,7 @@
     <div class="navigation">
         <ul>
             <li>
-                <a href="{% url "home:home" %}">
+                <a href="{% url 'home:home' %}">
                     <span class="fa fa-home"></span>
                     <span>Home</span>
                 </a>
@@ -24,27 +24,20 @@
                     <span>Search</span>
                 </a>
             </li>
-
-            <li>
-                <a href="#">
-                    <span class="fa fas fa-book"></span>
-                    <span>Your Library</span>
-                </a>
-            </li>
         </ul>
     </div>
 
     <div class="navigation">
         <ul>
             <li>
-                <a href="{% url "music:playlist" %}">
+                <a href="{% url 'music:playlist' %}">
                     <span class="fa fas fa-plus-square"></span>
                     <span>Your Playlist</span>
                 </a>
             </li>
 
             <li>
-                <a href="{% url "music:liked_songs" %}">
+                <a href="{% url 'music:liked_songs'%}">
                     <span class="fa fas fa-heart"></span>
                     <span>Liked Songs</span>
                 </a>
@@ -87,14 +80,16 @@
                         Sign Up</a>
             </li>
         </ul>
-       <a href="{% url "user:login" %}">
+       <a href="{% url 'user:login' %}">
                 <button type="button">Log In</button>
                 </a>
     </div>
 </div>
 
 
-    {% block content %} {% endblock %}
+    {% block content %}
+
+{% endblock %}
 
 
   <footer class="footer">
@@ -103,7 +98,7 @@
            <div class="footer-col">
              <h4>company</h4>
              <ul>
-               <li><a href="{% url "home:about_us" %}">about us</a></li>
+               <li><a href="{% url 'home:about_us' %}">about us</a></li>
                <li><a href="https://www.lifeatspotify.com">our services</a></li>
                <li><a href="#">privacy policy</a></li>
                <li><a href="#">affiliate program</a></li>
@@ -112,7 +107,7 @@
            <div class="footer-col">
              <h4>get help</h4>
              <ul>
-               <li><a href="{% url "home:FAQ" %}">FAQ</a></li>
+               <li><a href="{% url 'home:FAQ' %}">FAQ</a></li>
                <li><a href="https://artists.spotify.com/ru/home">shipping</a></li>
                <li><a href="#">returns</a></li>
                <li><a href="#">order status</a></li>

@@ -1,99 +1,193 @@
 {% extends "base.html" %}
 {% load static %}
 
-
-
-
-
 {% block content %}
 
+<link rel="stylesheet" href="{% static 'css/music_detail.css' %}">
+
+<div class="content__middle">
 
 
-<link rel="stylesheet"  href="{% static "css/music_detail.css" %}">
 
-    <div class="content__middle">
+    <div class="artist__header" style="background-image: url('{{ music.cover_image.url }}');">
 
-      <div class="artist is-verified">
+      <div class="artist__info">
 
-        <div class="artist__header" style="background-image: url('{{ music.cover_image.url }}');">
+        <div class="profile__img">
 
-          <div class="artist__info">
+          <img src="{{ music.image.url }}" />
 
-            <div class="profile__img">
+        </div>
 
-              <img src={{ music.image.url }} />
-
-            </div>
-
-            <div class="artist__info__meta">
+        <div class="artist__info__meta">
 
           {% for artist in music.artists.all %}
-              <a href="{% url "artist:artist_detail" artist.pk %}">
-              <div class="artist__info__type" style="font-weight: 700;font-size: 12px;">{{ artist.pseudonym }}</div>
-              </a>
-              {% endfor %}
+          <a href="{% url "artist:artist_detail" artist.pk %}">
+          <div class="artist__info__type" style="font-weight: 700; font-size: 12px;">{{ artist.pseudonym }}</div>
+          </a>
+          {% endfor %}
 
-              <div class="artist__info__name">{{ music.name }}</div>
+          <div class="artist__info__name">{{ music.name }}</div>
 
-              <div class="artist__info__actions">
+          <div class="artist__info__actions">
 
-                <button class="button-dark">
-                  Play
-                </button>
+            <button class="button-dark">
+              Play
+            </button>
 
-                <button id="addToPlaylistBtn" class="button-light">ADD</button>
+            <button id="addToPlaylistBtn" class="button-light">ADD</button>
 
-                <button class="button-light more">
-                    <i class="fas fa-heart fa-9x" style="color: #34a247; font-size: 13px; margin-left:6px;"></i>
-                </button>
+            <button class="button-light more">
+              <i class="fas fa-heart fa-9x" style="color: #34a247; font-size: 13px; margin-left:6px;"></i>
+            </button>
 
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="artist__listeners">
+
+        <div class="artist__listeners__count">{{ music.listens }}</div>
+
+        <div class="artist__listeners__label">Monthly Listeners</div>
+
+      </div>
+
+      <div class="artist__navigation">
+
+        <ul class="nav nav-tabs" role="tablist">
+
+          <li role="presentation" class="active">
+            <a href="#artist-overview" aria-controls="artist-overview" role="tab" data-toggle="tab">Overview</a>
+          </li>
+
+          <li role="presentation">
+            <a href="#related-artists" aria-controls="related-artists" role="tab" data-toggle="tab">Related Artists</a>
+          </li>
+
+        </ul>
+
+        <div class="artist__navigation__friends">
+
+          <a href="#">
+            <img src="http://zblogged.com/wp-content/uploads/2015/11/17.jpg" alt="" />
+          </a>
+
+          <a href="#">
+            <img src="http://zblogged.com/wp-content/uploads/2015/11/5.png" alt="" />
+          </a>
+
+          <a href="#">
+            <img src="http://cdn.devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg" alt="" />
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="artist__content">
+
+      <div class="tab-content">
+
+        <!-- Overview -->
+        <div role="tabpanel" class="tab-pane active" id="artist-overview">
+
+          <div class="overview">
+
+            <div class="overview__artist">
+
+              <!-- Latest Release-->
+              <div class="section-title">Latest released</div>
+
+              <div class="latest-release">
+
+                <div class="latest-release__art">
+
+                  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="When It's Dark Out" />
+
+                </div>
+
+                <div class="latest-release__song">
+
+                  <div class="latest-release__song__title">Drifting (Track Commentary)</div>
+
+                  <div class="latest-release__song__date">
+
+                    <span class="day">4</span>
+
+                    <span class="month">December</span>
+
+                    <span class="year">2015</span>
+
+                  </div>
+
+                </div>
 
               </div>
 
-            </div>
+              <div class="section-title">Popular</div>
 
+              <div class="tracks">
 
-          </div>
+                <div class="track">
 
-          <div class="artist__listeners">
+                  <div class="track__art">
 
-            <div class="artist__listeners__count">{{ music.listens }}</div>
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="When It's Dark Out" />
 
-            <div class="artist__listeners__label">Monthly Listeners</div>
+                  </div>
 
-          </div>
+                  <div class="track__number">1</div>
 
-          <div class="artist__navigation">
+                  <div class="track__added">
 
-            <ul class="nav nav-tabs" role="tablist">
+                    <i class="ion-checkmark-round added"></i>
 
-              <li role="presentation" class="active">
-                <a href="#artist-overview" aria-controls="artist-overview" role="tab" data-toggle="tab">Overview</a>
-              </li>
+                  </div>
 
-              <li role="presentation">
-                <a href="#related-artists" aria-controls="related-artists" role="tab" data-toggle="tab">Related Artists</a>
-              </li>
+                  <div class="track__title">Me, Myself & I</div>
 
-              <!--<li role="presentation">
-                <a href="#artist-about" aria-controls="artist-about" role="tab" data-toggle="tab">About</a>
-              </li>-->
+                  <div class="track__explicit">
 
-            </ul>
+                    <span class="label">Explicit</span>
 
-            <div class="artist__navigation__friends">
+                  </div>
 
-              <a href="#">
-                <img src="http://zblogged.com/wp-content/uploads/2015/11/17.jpg" alt="" />
-              </a>
+                  <div class="track__plays">147,544,165</div>
 
-              <a href="#">
-                <img src="http://zblogged.com/wp-content/uploads/2015/11/5.png" alt="" />
-              </a>
+                </div>
 
-              <a href="#">
-                <img src="http://cdn.devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg" alt="" />
-              </a>
+                <!-- Include other tracks here -->
+
+              </div>
+
+              <div class="overview__related">
+
+                <div class="section-title">Related Artists</div>
+
+                <div class="related-artists">
+
+                  <!-- Include related artists here -->
+
+                </div>
+
+              </div>
+
+              <div class="overview__albums">
+
+                <div class="overview__albums__head">
+
+                  <span class="section-title">Albums</span>
+
+                </div>
+
+                <!-- Include albums here -->
+
+              </div>
 
             </div>
 
@@ -101,414 +195,12 @@
 
         </div>
 
-        <div class="artist__content">
+        <!-- Related Artists -->
+        <div role="tabpanel" class="tab-pane" id="related-artists">
 
-          <div class="tab-content">
+          <div class="media-cards">
 
-            <!-- Overview -->
-            <div role="tabpanel" class="tab-pane active" id="artist-overview">
-
-              <div class="overview">
-
-                <div class="overview__artist">
-
-                  <!-- Latest Release-->
-                  <div class="section-title">Latest relisd</div>
-
-                  <div class="latest-release">
-
-                    <div class="latest-release__art">
-
-                      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="When It's Dark Out" />
-
-                    </div>
-
-                    <div class="latest-release__song">
-
-                      <div class="latest-release__song__title">Drifting (Track Commentary)</div>
-
-                      <div class="latest-release__song__date">
-
-                        <span class="day">4</span>
-
-                        <span class="month">December</span>
-
-                        <span class="year">2015</span>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-                  <!-- / -->
-
-                  <!-- Popular-->
-                  <div class="section-title">Popular</div>
-
-                  <div class="tracks">
-
-                    <div class="track">
-
-                      <div class="track__art">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="When It's Dark Out" />
-
-                      </div>
-
-                      <div class="track__number">1</div>
-
-                      <div class="track__added">
-
-                        <i class="ion-checkmark-round added"></i>
-
-                      </div>
-
-                      <div class="track__title">Me, Myself & I</div>
-
-                      <div class="track__explicit">
-
-                        <span class="label">Explicit</span>
-
-                      </div>
-
-                      <div class="track__plays">147,544,165</div>
-
-                    </div>
-
-                    <div class="track">
-
-                      <div class="track__art">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/tth.jpg" alt="These Things Happen" />
-
-                      </div>
-
-                      <div class="track__number">2</div>
-
-                      <div class="track__added">
-
-                        <i class="ion-plus not-added"></i>
-
-                      </div>
-
-                      <div class="track__title">I Mean It</div>
-
-                      <div class="track__explicit">
-
-                        <span class="label">Explicit</span>
-
-                      </div>
-
-                      <div class="track__plays">74,568,782</div>
-
-                    </div>
-
-                    <div class="track">
-
-                      <div class="track__art">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="When It's Dark Out" />
-
-                      </div>
-
-                      <div class="track__number">3</div>
-
-                      <div class="track__added">
-
-                        <i class="ion-checkmark-round added"></i>
-
-                      </div>
-
-                      <div class="track__title">Calm Down</div>
-
-                      <div class="track__explicit">
-
-                        <span class="label">Explicit</span>
-
-                      </div>
-
-                      <div class="track__plays">13,737,506</div>
-
-                    </div>
-
-                    <div class="track">
-
-                      <div class="track__art">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/whenDarkOut.jpg" alt="When It's Dark Out" />
-
-                      </div>
-
-                      <div class="track__number">4</div>
-
-                      <div class="track__added">
-
-                        <i class="ion-plus not-added"></i>
-
-                      </div>
-
-                      <div class="track__title">Some Kind Of Drug</div>
-
-                      <div class="track__explicit">
-
-                        <span class="label">Explicit</span>
-
-                      </div>
-
-                      <div class="track__plays">12,234,881</div>
-
-                    </div>
-
-                    <div class="track">
-
-                      <div class="track__art">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/tth.jpg" alt="These Things Happen" />
-
-                      </div>
-
-                      <div class="track__number">5</div>
-
-                      <div class="track__added">
-
-                        <i class="ion-checkmark-round added"></i>
-
-                      </div>
-
-                      <div class="track__title">Let's Get Lost</div>
-
-                      <div class="track__explicit">
-
-                        <span class="label">Explicit</span>
-
-                      </div>
-
-                      <div class="track__plays">40,882,954</div>
-
-                    </div>
-
-
-
-                <div class="overview__related">
-
-                  <div class="section-title">Related Artists</div>
-
-                  <div class="related-artists">
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/hoodie.jpg" alt="Hoodie Allen" />
-
-                      </span>
-
-                      <span class="related-artist__name">Hoodie Allen</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/mikestud.jpg" alt="Mike Stud" />
-
-                      </span>
-
-                      <span class="related-artist__name">Mike Stud</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/drake.jpeg" alt="Drake" />
-
-                      </span>
-
-                      <span class="related-artist__name">Drake</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/jcole.jpg" alt="J. Cole" />
-
-                      </span>
-
-                      <span class="related-artist__name">J. Cole</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/bigsean.jpg" alt="Big Sean" />
-
-                      </span>
-
-                      <span class="related-artist__name">Big Sean</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/wiz.jpeg" alt="Wiz Khalifa" />
-
-                      </span>
-
-                      <span class="related-artist__name">Wiz Khalifa</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/yonas.jpg" alt="Yonas" />
-
-                      </span>
-
-                      <span class="related-artist__name">Yonas</span>
-
-                    </a>
-
-                  </div>
-
-                </div>
-
-                <div class="overview__albums">
-
-                  <div class="overview__albums__head">
-
-                    <span class="section-title">Albums</span>
-
-
-
-                  </div>
-
-
-
-                </div>
-
-              </div>
-
-            </div>
-             <!-- Related Artists -->
-            <div role="tabpanel" class="tab-pane" id="related-artists">
-
-              <div class="media-cards">
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/hoodie.jpg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">Hoodie Allen</a>
-
-                </div>
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/mikestud_large.jpg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">Mike Stud</a>
-
-                </div>
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/drake_large.jpg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">Drake</a>
-
-                </div>
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/jcole_large.jpg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">J. Cole</a>
-
-                </div>
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/bigSean_large.jpg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">Big Sean</a>
-
-                </div>
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/wiz.jpeg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">Wiz Khalifa</a>
-
-                </div>
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/yonas.jpg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">Yonas</a>
-
-                </div>
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/childish.jpg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">Childish Gambino</a>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-<!--             About // Coming Soon-->
-<!--              <div role="tabpanel" class="tab-pane" id="artist-about">About</div>-->
-<!--             / -->
+            <!-- Include related artist cards here -->
 
           </div>
 
@@ -518,32 +210,6 @@
 
     </div>
 
-
-{% endblock %}
-
-
-        {% block player %}
-        <link href="button.css" rel="stylesheet" />
-<div class="bottom margin">
-    <input type="range" name="range" id="ProgressBar" min="0" max="100" />
-    <div class="songinfo-container">
-        <div class="songinfo">
-            <span id="masterSongName"> CNCO - Tan Facil</span>
-        </div>
-        <div class="songinfo-img">
-            <img src="https://iscale.iheart.com/catalog/artist/31116368" alt="artist photo" id="gif" />
-        </div>
-        <div class="icon">
-            <i class="fas fa-2x fa-step-backward" id="previous"></i>
-            <i class="fa fa-2x fa-play-circle" aria-hidden="true"></i>
-            <i class="fas fa-2x fa-step-forward" id="next"></i>
-        </div>
-    </div>
 </div>
 
-
-
-
-<script src="{% static 'js/music_detail.js' %}">  </script>
-</body>
 {% endblock %}

@@ -29,16 +29,6 @@ input:invalid {
     box-shadow:none;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 232px auto;
-  grid-template-rows: 60px auto 90px;
-  gap: 0px 0px;
-  grid-template-areas:
-    "sidebar navbar"
-    "sidebar main"
-    "playbar playbar";
-}
 
 .label {
     display: inline-block;

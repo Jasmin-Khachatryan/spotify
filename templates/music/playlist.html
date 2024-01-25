@@ -1,23 +1,9 @@
-{% extends "music/liked_songs.html" %}
+{% extends "base.html" %}
 {% load static %}
-
-{% block css %}
 <link rel="stylesheet" href="{% static 'css/likedsong.css' %}?{% now " U " %}">
 
-
-{% endblock %}
-
-{% block home %}
-{% endblock %}
-
-{% block search %}
-{% endblock %}
-
-{% block liked-song %}
-active
-{% endblock %}
-
-{% block main %}
+{% block content %}
+<div class="content=">
 <div class="playlist__banner">
 {% for playlist in user_musics %}
 	<div class="playlist__left">
@@ -33,13 +19,9 @@ active
 
 </div>
 
-
-
-
-
 <div class="playlist__list">
     <div class="playlist__header" >
-        <div class="playlist__headerTitle"># Title</div>
+        <div class="playlist__headerTitle"> Title</div>
         <div class="playlist__headerAlbum">Artist</div>
         <div class="playlist__headerDate">Date Added</div>
         <div class="playlist__headerDuration">Duration
@@ -82,5 +64,5 @@ active
 
 </div>
 
-
+</div>
 {% endblock %}

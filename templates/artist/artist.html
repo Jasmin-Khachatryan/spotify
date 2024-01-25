@@ -1,408 +1,39 @@
 {% extends "base.html" %}
-
 {% load static %}
-{% load humanize %}
 
-<link rel="stylesheet" href="{% static "css/music_detail.css" %}">
+
+<link rel="stylesheet" href="{% static 'css/music_detail.css' %}">
 {% block content %}
 
-    <div class="content__middle">
+<div class="content__middle">
 
-      <div class="artist is-verified">
+  <div class="artist is-verified">
 
-        <div class="artist__header" style="background-image: url('{{ artists.cover_image.url }}');">
+    <div class="artist__header" style="background-image: url('{{ artists.cover_image.url }}');">
 
+      <div class="artist__info">
 
+        <div class="profile__img">
 
-          <div class="artist__info">
-
-            <div class="profile__img">
-
-              <img src="{{ artists.image.url }}"  />
-
-            </div>
-
-            <div class="artist__info__meta">
-
-              <div class="artist__info__type " style="font-weight: 700;font-size: 12px;">Artist</div>
-
-              <div class="artist__info__name" style="
-  font-size: 72px;
-  font-weight: 900;
-  letter-spacing: -.04em;">{{artists.pseudonym}}</div>
-
-
-
-              <div class="artist__info__actions">
-
-                <button class="button-dark">
-                  Play
-                </button>
-
-                <button class="button-light">Follow</button>
-
-                <button class="button-light more">
-                    <i class="fas fa-heart fa-9x" style="color: #34a247; font-size: 13px; margin-left:6px;"></i>
-                </button>
-
-
-              </div>
-
-            </div>
-
-
-          </div>
-
-          <div class="artist__listeners">
-
-            <div class="artist__listeners__count">{{ artists.followers|intcomma  }}</div>
-
-            <div class="artist__listeners__label">Followers</div>
-
-          </div>
-
-          <div class="artist__navigation">
-
-            <ul class="nav nav-tabs" role="tablist">
-
-              <li role="presentation" class="active">
-                <a href="#artist-overview" aria-controls="artist-overview" role="tab" data-toggle="tab">Overview</a>
-              </li>
-
-              <li role="presentation">
-                <a href="#related-artists" aria-controls="related-artists" role="tab" data-toggle="tab">Related Artists</a>
-              </li>
-
-              <!--<li role="presentation">
-                <a href="#artist-about" aria-controls="artist-about" role="tab" data-toggle="tab">About</a>
-              </li>-->
-
-            </ul>
-
-            <div class="artist__navigation__friends">
-
-              <a href="#">
-                <img src="http://zblogged.com/wp-content/uploads/2015/11/17.jpg" alt="" />
-              </a>
-
-
-            </div>
-
-          </div>
+          <img src="{{ artists.image.url }}" />
 
         </div>
 
-        <div class="artist__content">
+        <div class="artist__info__meta">
 
-          <div class="tab-content">
+          <div class="artist__info__type" style="font-weight: 700; font-size: 12px;">Artist</div>
 
-            <!-- Overview -->
-            <div role="tabpanel" class="tab-pane active" id="artist-overview">
+          <div class="artist__info__name" style="font-size: 72px; font-weight: 900; letter-spacing: -.04em;">{{ artists.pseudonym }}</div>
 
-              <div class="overview">
+          <div class="artist__info__actions">
 
-                <div class="overview__artist">
+            <button class="button-dark">Play</button>
 
+            <button class="button-light">Follow</button>
 
-{% if artists.music.all %}
-    {% with latest_music=artists.music.all|first %}
-        <div class="section-title">Latest Released</div>
-
-      <a href="{% url "music:detail" latest_music.pk %}">
-
-        <div class="latest-release">
-
-            <div class="latest-release__art">
-                <img src="{{ latest_music.image.url }}" alt="{{ latest_music.name }}" />
-            </div>
-
-            <div class="latest-release__song">
-
-                <div class="latest-release__song__title">{{ latest_music.name }}</div>
-
-                <div class="latest-release__song__date">
-                    <span class="day">{{ latest_music.created_at.day }}</span>
-                    <span class="month">{{ latest_music.created_at|date:"F" }}</span>
-                    <span class="year">{{ latest_music.created_at.year }}</span>
-
-                </div>
-
-</a>
-
-
-            </div>
-
-        </div>
-    {% endwith %}
-{% else %}
-    <p>{{ artist.first_name }} {{ artist.last_name }} has not released any songs yet.</p>
-{% endif %}
-
-
-                    </div>
-
-                  </div>
-                  <!-- / -->
-
-                  <!-- Popular-->
-                  <div class="section-title">Popular</div>
-      {% for song in artists.music.all %}
-              <a href="{% url "music:detail" song.pk %}">  <div class="tracks">
-
-
-
-                    <div class="track">
-
-                      <div class="track__art">
-
-                        <img src="{{ song.image.url }}" alt="When It's Dark Out" />
-
-                      </div>
-
-                      <div class="track__number">{{ forloop.counter }}</div>
-
-                      <div class="track__added">
-
-                        <i class="ion-checkmark-round added"></i>
-
-                      </div>
-
-                      <div class="track__title">{{ song.name }}</div>
-
-                      <div class="track__explicit">
-
-                        <span class="label">{{ song.created_at.year }}</span>
-
-                      </div>
-
-                      <div class="track__plays">{{ song.listens|intcomma}}</div>
-
-                    </div></a>
-
-
-{% endfor %}
-
-                <div class="overview__related">
-
-                  <div class="section-title">Related Artists</div>
-
-                  <div class="related-artists">
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/hoodie.jpg" alt="Hoodie Allen" />
-
-                      </span>
-
-                      <span class="related-artist__name">Hoodie Allen</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/mikestud.jpg" alt="Mike Stud" />
-
-                      </span>
-
-                      <span class="related-artist__name">Mike Stud</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/drake.jpeg" alt="Drake" />
-
-                      </span>
-
-                      <span class="related-artist__name">Drake</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/jcole.jpg" alt="J. Cole" />
-
-                      </span>
-
-                      <span class="related-artist__name">J. Cole</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/bigsean.jpg" alt="Big Sean" />
-
-                      </span>
-
-                      <span class="related-artist__name">Big Sean</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/wiz.jpeg" alt="Wiz Khalifa" />
-
-                      </span>
-
-                      <span class="related-artist__name">Wiz Khalifa</span>
-
-                    </a>
-
-                    <a href="#" class="related-artist">
-
-                      <span class="related-artist__img">
-
-                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/yonas.jpg" alt="Yonas" />
-
-                      </span>
-
-                      <span class="related-artist__name">Yonas</span>
-
-                    </a>
-
-                  </div>
-
-                </div>
-
-                <div class="overview__albums">
-
-                  <div class="overview__albums__head">
-
-                    <span class="section-title">Albums</span>
-
-
-
-                  </div>
-
-
-
-                </div>
-
-              </div>
-
-
-            </div>
-             <!-- Related Artists -->
-            <div role="tabpanel" class="tab-pane" id="related-artists">
-
-              <div class="media-cards">
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/hoodie.jpg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">Hoodie Allen</a>
-
-                </div>
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/mikestud_large.jpg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">Mike Stud</a>
-
-                </div>
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/drake_large.jpg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">Drake</a>
-
-                </div>
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/jcole_large.jpg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">J. Cole</a>
-
-                </div>
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/bigSean_large.jpg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">Big Sean</a>
-
-                </div>
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/wiz.jpeg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">Wiz Khalifa</a>
-
-                </div>
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/yonas.jpg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">Yonas</a>
-
-                </div>
-
-                <div class="media-card">
-
-                  <div class="media-card__image" style="background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/childish.jpg);">
-
-                    <i class="ion-ios-play"></i>
-
-                  </div>
-
-                  <a class="media-card__footer">Childish Gambino</a>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-            <!-- About // Coming Soon-->
-              <!--<div role="tabpanel" class="tab-pane" id="artist-about">About</div>-->
-            <!-- / -->
+            <button class="button-light more">
+              <i class="fas fa-heart fa-9x" style="color: #34a247; font-size: 13px; margin-left:6px;"></i>
+            </button>
 
           </div>
 
@@ -410,7 +41,137 @@
 
       </div>
 
+      <div class="artist__listeners">
+
+        <div class="artist__listeners__count">{{ artists.followers|intcomma }}</div>
+
+        <div class="artist__listeners__label">Followers</div>
+
+      </div>
+
+      <div class="artist__navigation">
+
+        <ul class="nav nav-tabs" role="tablist">
+
+          <li role="presentation" class="active">
+            <a href="#artist-overview" aria-controls="artist-overview" role="tab" data-toggle="tab">Overview</a>
+          </li>
+
+          <li role="presentation">
+            <a href="#related-artists" aria-controls="related-artists" role="tab" data-toggle="tab">Related Artists</a>
+          </li>
+
+          <!--<li role="presentation">
+            <a href="#artist-about" aria-controls="artist-about" role="tab" data-toggle="tab">About</a>
+          </li>-->
+
+        </ul>
+
+        <div class="artist__navigation__friends">
+
+          <a href="#">
+            <img src="http://zblogged.com/wp-content/uploads/2015/11/17.jpg" alt="" />
+          </a>
+
+        </div>
+
+      </div>
+
     </div>
 
-{% endblock %}
+    <div class="artist__content">
 
+      <div class="tab-content">
+
+        <!-- Overview -->
+        <div role="tabpanel" class="tab-pane active" id="artist-overview">
+
+          <div class="overview">
+
+            <div class="overview__artist">
+
+              {% if artists.music.all %}
+              {% with latest_music=artists.music.all|first %}
+              <div class="section-title">Latest Released</div>
+
+              <a href="{% url "music:detail" latest_music.pk %}">
+              <div class="latest-release">
+
+                <div class="latest-release__art">
+                  <img src="{{ latest_music.image.url }}" alt="{{ latest_music.name }}" />
+                </div>
+
+                <div class="latest-release__song">
+                  <div class="latest-release__song__title">{{ latest_music.name }}</div>
+                  <div class="latest-release__song__date">
+                    <span class="day">{{ latest_music.created_at.day }}</span>
+                    <span class="month">{{ latest_music.created_at|date:"F" }}</span>
+                    <span class="year">{{ latest_music.created_at.year }}</span>
+                  </div>
+                </div>
+              </div>
+              </a>
+              {% endwith %}
+              {% else %}
+              <p>{{ artist.first_name }} {{ artist.last_name }} has not released any songs yet.</p>
+              {% endif %}
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Popular -->
+        <div role="tabpanel" class="tab-pane" id="related-artists">
+
+          <div class="tracks">
+            {% for song in artists.music.all %}
+            <a href="{% url "music:detail" song.pk %}">
+            <div class="track">
+              <div class="track__art">
+                <img src="{{ song.image.url }}" alt="{{ song.name }}" />
+              </div>
+              <div class="track__number">{{ forloop.counter }}</div>
+              <div class="track__added">
+                <i class="ion-checkmark-round added"></i>
+              </div>
+              <div class="track__title">{{ song.name }}</div>
+              <div class="track__explicit">
+                <span class="label">{{ song.created_at.year }}</span>
+              </div>
+              <div class="track__plays">{{ song.listens|intcomma }}</div>
+            </div>
+            </a>
+            {% endfor %}
+          </div>
+
+          <div class="overview__related">
+
+            <div class="section-title">Related Artists</div>
+
+            <div class="related-artists">
+
+              <!-- Include related artists here -->
+
+            </div>
+
+          </div>
+
+          <div class="overview__albums">
+
+            <div class="overview__albums__head">
+              <span class="section-title">Albums</span>
+            </div>
+
+            <!-- Include albums here -->
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

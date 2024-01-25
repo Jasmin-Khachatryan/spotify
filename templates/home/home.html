@@ -1,4 +1,4 @@
-{% extends "main_base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block content %}
@@ -11,7 +11,7 @@
         <div class="list">
             {% for album in album_chunk %}
                 <div class="item">
-                    <a href="{% url "music:album_detail" album.pk %}">
+                    <a href="{% url 'music:album_detail' album.pk %}">
                         <img src="{{ album.image.url }}" />
 
                     <div class="play">

@@ -1,23 +1,8 @@
-{% extends "music/liked_songs.html" %}
+{% extends "base.html" %}
 {% load static %}
 
-{% block css %}
 <link rel="stylesheet" href="{% static 'css/likedsong.css' %}?{% now " U " %}">
-
-
-{% endblock %}
-
-{% block home %}
-{% endblock %}
-
-{% block search %}
-{% endblock %}
-
-{% block liked-song %}
-active
-{% endblock %}
-
-{% block main %}
+{% block content %}
 <div class="playlist__banner">
 
 	<div class="playlist__left">
