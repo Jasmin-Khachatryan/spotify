@@ -3,14 +3,14 @@
 {% load static %}
 {% load humanize %}
 
-<link rel="stylesheet" href="{% static "css/artist.css" %}">
+<link rel="stylesheet" href="{% static "css/music_detail.css" %}">
 {% block content %}
 
     <div class="content__middle">
 
       <div class="artist is-verified">
 
-        <div class="artist__header" style="background-image: url('{{ artists.cover_image.url }}');">>
+        <div class="artist__header" style="background-image: url('{{ artists.cover_image.url }}');">
 
 
 
@@ -24,9 +24,14 @@
 
             <div class="artist__info__meta">
 
-              <div class="artist__info__type">Artist</div>
+              <div class="artist__info__type " style="font-weight: 700;font-size: 12px;">Artist</div>
 
-              <div class="artist__info__name">{{artists.pseudonym}}</div>
+              <div class="artist__info__name" style="
+  font-size: 72px;
+  font-weight: 900;
+  letter-spacing: -.04em;">{{artists.pseudonym}}</div>
+
+
 
               <div class="artist__info__actions">
 

@@ -53,9 +53,9 @@
         <div class="navigation">
             <ul>
                 <li>
-                    <a href="#">
+                     <a href="{% url "music:playlist" %}">
                         <span class="fa fas fa-plus-square"></span>
-                        <span>Create Playlist</span>
+                        <span>Your Playlist</span>
                     </a>
                 </li>
 
@@ -104,8 +104,9 @@
 
                     </li>
 
-                     {% if not request.user.is_authenticated %}
+ {% if not request.user.is_authenticated %}
                     <li class="divider">|</li>
+
 
                     <li>
                         <a href="{% url "user:registration" %}">
@@ -117,13 +118,21 @@
                 <button type="button">Log In</button>
 
                 {% else %}
+                <li class="divider">|</li>
+
+
+
+                <li>
+                        <a href="">
+                        Profile</a>
+
+                    </li>
                 </ul>
 
-                 {% csrf_token %}
                 <a href="{% url "user:Logout" %}">
                 <button type="button">Log out</button>
                 </a>
-                     form>
+
                 {% endif %}
             </div>
         </div>
@@ -144,7 +153,7 @@
     <footer class="footer">
         <div class="container">
          <div class="row">
-           <div class="footer-col">
+           <div class="footer-col" style=" float: right;">
              <h4>company</h4>
              <ul>
                <li><a href="{% url "home:about_us" %}">about us</a></li>
@@ -172,15 +181,8 @@
                <li><a href="#">dress</a></li>
              </ul>
            </div>
-           <div class="footer-col">
-             <h4>follow us</h4>
-             <div class="social-links">
-               <a href="#"><i class="fab fa-facebook-f"></i></a>
-               <a href="#"><i class="fab fa-twitter"></i></a>
-               <a href="#"><i class="fab fa-instagram"></i></a>
-               <a href="#"><i class="fab fa-linkedin-in"></i></a>
-             </div>
-           </div>
+
+
          </div>
         </div>
      </footer>

@@ -53,10 +53,11 @@
   letter-spacing: 1px;
 }
 .artist__header .artist__info__name {
-  color: white;
-  font-size: 36px;
-  font-weight: 100;
-  padding: 0 0 10px 0;
+
+  font-size: 72px;
+  font-weight: 900;
+  letter-spacing: -.04em;
+}
 }
 .artist__header .artist__info__actions {
   display: flex;
