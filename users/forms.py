@@ -12,11 +12,16 @@ class EmailForm(forms.Form):
 
 
 class RegistrationForm(UserCreationForm):
-    is_artist = forms.BooleanField(initial=False, required=False)
+    CHOICES = [
+        (True, 'Yes'),
+        (False, 'No'),
+    ]
+
+    is_artist = forms.BooleanField(initial=False, required=False, widget=forms.RadioSelect(choices=CHOICES))
 
     class Meta:
         model = User
-        fields = ("email", "password1", "password2", "is_artist")
+        fields = ("email", "first_name", "last_name", "password1", "password2", "is_artist")
 
     def save(self, commit=True):
         user = super().save(commit=False)
