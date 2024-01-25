@@ -1,11 +1,9 @@
 {% load static %}
 
-
-<link rel="stylesheet" href="{% static "css/base.css" %}">
-  <link rel="stylesheet" href="{% static "css/home.css" %}">
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
 <div class="sidebar">
     <div class="logo">
-        <a href="{% url "home:home" %}">
+        <a href="{% url 'home:home' %}">
             <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png"
                 alt="Logo" />
         </a>
@@ -85,7 +83,7 @@
             </li>
             <li class="divider">|</li>
             <li>
-               <a href="{% url "user:registration" %}">
+               <a href="{% url 'user:registration' %}">
                         Sign Up</a>
             </li>
         </ul>
