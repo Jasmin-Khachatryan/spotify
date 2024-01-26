@@ -10,6 +10,7 @@ urlpatterns = [
     path("music/", include("music.urls", namespace="music")),
     path("artist/", include("artist.urls", namespace="artist")),
     path("__debug__/", include("debug_toolbar.urls")),
+    path("payment/", include("payment.urls", namespace="payment"))
 
 ]
 

@@ -1,0 +1,74 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/paymant.css'%}">
+
+<body>
+<section class="about-us">
+    <div class="about">
+        <img src="https://th.bing.com/th/id/OIP.HOL9bWffk8Bzk3qJbbA40gHaD5?rs=1&pid=ImgDetMain" class="pic">
+        <div class="text">
+            <h2>Affordable plans for any situation</h2>
+            <h5>Front-end Developer & <span>Designer</span></h5>
+            <p>Choose a Premium plan and listen to ad-free music without limits on your phone, speaker, and other devices. Pay in various ways. Cancel anytime.</p>
+            <div class="data">
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="article-container">
+    {% for payment in payments %}
+    <article class="plan [ card ]">
+        <div class="inner">
+            <span class="tag">Feature</span>
+            <span class="pricing">
+
+				<span>
+					{{payment.price}} <small>/ m</small>
+				</span>
+			</span>
+            <h2 class="title">{{payment.name}}</h2>
+            <p class="info">{{payment.description}}</p>
+            <ul class="features">
+                <li>
+					<span class="icon">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+							<path fill="none" d="M0 0h24v24H0z" />
+							<path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor" />
+						</svg>
+					</span>
+                    <span><strong>Best</strong> songs</span>
+                </li>
+                <li>
+					<span class="icon">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+							<path fill="none" d="M0 0h24v24H0z" />
+							<path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor" />
+						</svg>
+					</span>
+                    <span>Best <strong>feeling</strong></span>
+                </li>
+                <li>
+					<span class="icon">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+							<path fill="none" d="M0 0h24v24H0z" />
+							<path d="M10 15.172l9.192-9.193 1.415 1.414L10 18l-6.364-6.364 1.414-1.414z" fill="currentColor" />
+						</svg>
+					</span>
+                    <span>In Best template</span>
+                </li>
+            </ul>
+            <a href="{% url 'payment:create_checkout_session' pk=payment.pk %}" class="button">
+                <button class="button">
+                    Buy Now
+                </button>
+            </a>
+        </div>
+    </article>
+{% endfor %}
+
+</div>
+
+
+
+
+</body>

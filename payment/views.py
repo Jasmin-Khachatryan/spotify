@@ -11,7 +11,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 class PaymentView(ListView):
     model = Account
 
-    template_name = "payments/payment.html"
+    template_name = "payment/payment.html"
     context_object_name = "payments"
 
 
