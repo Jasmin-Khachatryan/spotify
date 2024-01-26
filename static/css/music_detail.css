@@ -164,7 +164,7 @@
 }
 .artist__content .overview__artist {
   padding-right: 15px;
-  width: 90%;
+  width: 100%;
 }
 .artist__content .overview__artist .latest-release {
   margin-bottom: 30px;
@@ -518,4 +518,8 @@ button:hover {
   letter-spacing: 1.25px;
   font-size: 13.2px;
   margin-bottom: 10px;
+}
+.artist__content .overview__artist {
+    padding-right: 15px;
+    width: 100%;
 }

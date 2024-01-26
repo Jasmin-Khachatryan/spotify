@@ -284,6 +284,7 @@
     border-radius: 40px;
     cursor: pointer;
   }
+
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 body{
@@ -348,20 +349,25 @@ ul{
   color: #ffffff;
   padding-left: 8px;
 }
-.footer-col .social-links a{
+.footer-col .social-links a {
   display: inline-block;
   height: 40px;
   width: 40px;
-  background-color: rgba(255,255,255,0.2);
-  margin:0 10px 10px 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 10px 10px 0;
   text-align: center;
   line-height: 40px;
   border-radius: 50%;
   color: #ffffff;
   transition: all 0.5s ease;
 }
-.footer-col .social-links a:hover{
+
+.footer-col .social-links a:hover {
   color: #24262b;
   background-color: #ffffff;
+}
+
+.footer-col .social-links a i {
+  margin-top: 30%;
 }
 

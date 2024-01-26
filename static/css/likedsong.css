@@ -14,7 +14,9 @@ a {
     background: linear-gradient(transparent,rgba(0,0,0,.5)), rgb(70, 62, 118);
 
 }
-
+.playlist__songTitle{
+    color:white;
+}
 .playlist__img {
     object-fit: contain;
     height: 232px;
@@ -170,3 +172,10 @@ a {
 #song_name_delete{
   display: none;
 }
+.footer-col .social-links a:hover{
+  color: #24262b;
+  background-color: #ffffff;
+}
+.artist__name{
+    color:white;
+    }

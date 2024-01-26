@@ -53,7 +53,7 @@
                     </a>
                 </div>
                 {% for artist in song.artists.all %}
-                <a href="{% url 'artist:artist_detail' pk=artist.pk %}">{{ artist.pseudonym }}</a>
+                <a style="color:white;" href="{% url 'artist:artist_detail' pk=artist.pk %}">{{ artist.pseudonym }}</a>
                 <div class="playlist__headerAlbum ellipsis_one_line"></div>
                 {% endfor %}
                 <div class="playlist__headerDate">{{song.year}}</div>
