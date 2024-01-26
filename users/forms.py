@@ -30,3 +30,17 @@ class RegistrationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class ProfileForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["email"].required = True
+
+    image = forms.ImageField(required=False)
+
+    class Meta:
+        model = User
+        fields = ("first_name", "last_name",
+                  "email", "image")

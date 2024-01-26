@@ -1,0 +1,30 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static "css/profile.css" %}">
+<main class="container">
+    <div class="card">
+      <img src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'img/no_image.jpeg' %}{% endif %}" class="card__image" />
+      <div class="card__text">
+        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+        <p> Welcome to your Spotify profile</p>
+      </div>
+      <ul class="card__info">
+        <li>
+          <span class="card__info__stats">172</span>
+          <span>likes songs</span>
+        </li>
+        <li>
+          <span class="card__info__stats">47</span>
+          <span>followers</span>
+        </li>
+        <li>
+          <span class="card__info__stats">20</span>
+          <span>following</span>
+        </li>
+      </ul>
+      <div class="card__action">
+        <a href="{% url "user:edit_profile" pk=user.pk %}"> <button class="card__action__button card__action--follow">Edit</button></a>
+        <a href="{% url "home:home" %}"<button class="card__action__button card__action--message">Go back</button></a>
+      </div>
+    </div>
+  </main> -->

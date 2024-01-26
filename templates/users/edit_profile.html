@@ -1,0 +1,31 @@
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+
+
+<link rel="stylesheet" href="{% static "css/profile.css" %}">
+<main class="container">
+    <div class="card">
+
+<div class="text-break flex-grow-1" style="color:white;">
+<div class="form-label" style="color:white;">
+
+        <form method="POST" enctype="multipart/form-data">
+            <img src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'img/no_image.jpeg' %}{% endif %}" class="card__image" />
+            {% csrf_token %}
+            {{ form|crispy }}
+            <div class="d-grid gap-2">
+                <button class="btn btn-success" type="Submit">Submit</button>
+            </div>
+            </div>
+            </div>
+        </form>
+    </div>
+
+
+
+
+      </div>
+    </div>
+  </main> -->

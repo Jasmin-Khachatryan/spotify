@@ -1,15 +1,18 @@
 # from django.template.loader import render_to_string
 # from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
-from django.views.generic import FormView
+from django.views.generic import FormView, DetailView, UpdateView
 from django.contrib.auth.views import LoginView as Login
 from django.contrib.auth.views import LogoutView as Logout
 from django.conf import settings
 from .forms import EmailForm
 from django.contrib.auth import get_user_model
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import CreateView
-from .forms import RegistrationForm
+from .forms import RegistrationForm, ProfileForm
+from .models import UserProfile
+from helpers.mixins import OwnProFileMixin
 
 
 # from .generate_token import account_activation_token
@@ -62,6 +65,8 @@ class RegistrationView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
+        UserProfile.objects.create(user=self.object)
+
         return response
 
 
@@ -69,18 +74,26 @@ class LoginView(Login):
     template_name = "users/login.html"
 
 
-
 class LogoutView(Logout):
-    http_method_names = ['post']
+    pass
 
-    def get_next_page(self):
-        return super().get_next_page()
 
-    def dispatch(self, request, *args, **kwargs):
+class UserProfileView(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = "users/profile.html"
+    context_object_name = "user"
 
-        response = super().dispatch(request, *args, **kwargs)
-        return response
 
-    def post(self, request, *args, **kwargs):
+class UserUpdateView(OwnProFileMixin, UpdateView):
+    model = User
+    form_class = ProfileForm
+    template_name = "users/edit_profile.html"
 
-        return super().post(request, *args, **kwargs)
+    def get_initial(self):
+        return {
+                "image": self.object.image}
+
+    def get_success_url(self):
+
+        return reverse("user:profile", kwargs={"pk": self.object.pk})
+
