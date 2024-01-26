@@ -1,8 +1,11 @@
 # from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
+from artist.models import Artist
 from .models import Music, Album, PlaylistSong
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, FormView
+from .forms import MusicAddForm
 
-from django.http import JsonResponse
 
 class MusicDetailView(DetailView):
     model = Music
@@ -31,3 +34,60 @@ class PlayListView(ListView):
 
 
 
+
+
+class AddMusicView(FormView):
+    form_class = MusicAddForm
+    template_name = "music/add_music.html"
+    context_object_name = "form"
+    success_url = reverse_lazy("home:home")
+
+    def form_valid(self, form):
+        # Save the Music instance
+        music_instance = form.save()
+
+        # Handle saving the related Artist instance
+        artist_id = self.request.POST.get('artist', None)
+        if artist_id:
+            artist_instance = get_object_or_404(Artist, id=artist_id)
+            artist_instance.music.add(music_instance)
+
+        # Handle saving the related Album instance
+        album_id = self.request.POST.get('album', None)
+        if album_id:
+            album_instance = get_object_or_404(Album, id=album_id)
+            album_instance.music.add(music_instance)
+
+        return super().form_valid(form)
+
+
+# class UpdateMusicView(FormView):
+#     template_name = "music/update_music.html"
+#     form_class = MusicAddForm
+#     success_url = reverse_lazy("home:home")
+#
+#     def get_form(self, form_class=None):
+#         music_id = self.kwargs['pk']  # Assuming your URL includes the music ID as 'pk'
+#         music_instance = get_object_or_404(Music, id=music_id)
+#         return self.form_class(instance=music_instance, **self.get_form_kwargs())
+#
+#     def form_valid(self, form):
+#         music_id = self.kwargs['pk']
+#         music_instance = get_object_or_404(Music, id=music_id)
+#
+#         # Update the Music instance with the new form data
+#         music_instance.name = form.cleaned_data['name']
+#         music_instance.category.set(form.cleaned_data['category'])
+#         music_instance.artist = form.cleaned_data['artist']
+#         music_instance.album = form.cleaned_data['album']
+#         music_instance.image = form.cleaned_data['image']
+#         music_instance.cover_image = form.cleaned_data['cover_image']
+#         music_instance.description = form.cleaned_data['description']
+#         music_instance.year = form.cleaned_data['year']
+#         music_instance.duration = form.cleaned_data['duration']
+#         music_instance.file = form.cleaned_data['file']
+#         music_instance.listens = form.cleaned_data['listens']
+#
+#         music_instance.save()
+#
+#         return super().form_valid(form)

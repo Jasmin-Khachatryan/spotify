@@ -41,12 +41,6 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="#">
-                        <span class="fa fas fa-book"></span>
-                        <span>Your Library</span>
-                    </a>
-                </li>
             </ul>
         </div>
 
@@ -54,7 +48,8 @@
             <ul>
                 <li>
                      <a href="{% url "music:playlist" %}">
-                        <span class="fa fas fa-plus-square"></span>
+                     <span class="fa fas fa-book"></span>
+
                         <span>Your Playlist</span>
                     </a>
                 </li>
@@ -64,7 +59,14 @@
                         <span class="fa fas fa-heart"></span>
                         <span>Liked Songs</span>
                     </a>
+{% if user.is_artist %}
+                     <li>
+                    <a href="{% url "music:add_music" %}">
+                        <span class="fa fas fa-plus-square"></span>
+                        <span>Add Music</span>
+                    </a>
                 </li>
+                {% endif %}
             </ul>
         </div>
 
@@ -116,6 +118,7 @@
                 </ul>
                 <a href="{% url "user:login" %}">
                 <button type="button">Log In</button>
+               </a>
 
                 {% else %}
                 <li class="divider">|</li>
