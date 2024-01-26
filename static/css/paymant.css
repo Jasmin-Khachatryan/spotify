@@ -4,11 +4,30 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Spline Sans', sans-serif; /* Use the imported font family */
+      font-family: 'Spline Sans', sans-serif;
       line-height: 1.5;
-      min-height: 100vh;
+      min-height: 40vh;
       background-color: var(--c-ash);
     }
+    a {
+      text-decoration: none;
+      display: inline-block;
+      padding: 8px 16px;
+    }
+
+    a:hover {
+      background-color: #214e34;
+      color: black;
+    }
+
+    .previous {
+      background-color: #132f1f;
+      color: white;
+    }
+
+
+
+
 
     .about-us {
       height: 200px;

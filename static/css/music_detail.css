@@ -710,3 +710,8 @@ button:hover {
   .topbar .navbar button:focus {
     background-color: #f2f2f2;
   }
+  .footer{
+      margin-left:-10%;
+    background-color: #24262b;
+      padding: 70px 0;
+  }

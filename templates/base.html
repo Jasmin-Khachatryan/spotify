@@ -54,16 +54,7 @@
         </ul>
     </div>
 
-    <div class="policies">
-        <ul>
-            <li>
-                <a href="#">Cookies</a>
-            </li>
-            <li>
-                <a href="#">Privacy</a>
-            </li>
-        </ul>
-    </div>
+
 </div>
 
 <div class="topbar">
@@ -75,14 +66,12 @@
     <div class="navbar">
         <ul>
             <li>
-                <a href="#">Premium</a>
+                <a href="{% url "payment:payment_detail" %}">Premium</a>
             </li>
             <li>
-                <a href="#">Support</a>
+                <a href="{% url "home:FAQ" %}">Support</a>
             </li>
-            <li>
-                <a href="#">Download</a>
-            </li>
+
             <li class="divider">|</li>
             <li>
                <a href="{% url "user:registration" %}">
@@ -96,7 +85,9 @@
 </div>
 
 
-    {% block content %} {% endblock %}
+    {% block content %}
+
+{% endblock %}
 
 
   <footer class="footer">
@@ -118,7 +109,7 @@
                <li><a href="https://artists.spotify.com/ru/home">shipping</a></li>
                <li><a href="#">returns</a></li>
                <li><a href="#">order status</a></li>
-               <li><a href="#">payment options</a></li>
+               <li><a href="{% url "payment:payment_detail" %}">payment options</a></li>
              </ul>
            </div>
            <div class="footer-col">

@@ -9,6 +9,7 @@ urlpatterns = [
     path("user/", include("users.urls", namespace="user")),
     path("music/", include("music.urls", namespace="music")),
     path("artist/", include("artist.urls", namespace="artist")),
+    path("premium/", include("payment.urls", namespace="payments")),
     path("__debug__/", include("debug_toolbar.urls")),
 
 ]

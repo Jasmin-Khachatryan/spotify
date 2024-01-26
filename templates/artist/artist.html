@@ -8,11 +8,7 @@
 
     <div class="content__middle">
 
-      <div class="artist is-verified">
-
         <div class="artist__header" style="background-image: url('{{ artists.cover_image.url }}');">
-
-
 
           <div class="artist__info">
 
@@ -73,9 +69,7 @@
                 <a href="#related-artists" aria-controls="related-artists" role="tab" data-toggle="tab">Related Artists</a>
               </li>
 
-              <!--<li role="presentation">
-                <a href="#artist-about" aria-controls="artist-about" role="tab" data-toggle="tab">About</a>
-              </li>-->
+
 
             </ul>
 
@@ -108,7 +102,7 @@
     {% with latest_music=artists.music.all|first %}
         <div class="section-title">Latest Released</div>
 
-      <a href="{% url "music:detail" latest_music.pk %}">
+      <a href="{% url "music:detail" latest_music.pk %}"></a>
 
         <div class="latest-release">
 
@@ -127,7 +121,7 @@
 
                 </div>
 
-</a>
+
 
 
             </div>
@@ -142,9 +136,7 @@
                     </div>
 
                   </div>
-                  <!-- / -->
 
-                  <!-- Popular-->
                   <div class="section-title">Popular</div>
       {% for song in artists.music.all %}
               <a href="{% url "music:detail" song.pk %}">  <div class="tracks">
@@ -400,17 +392,13 @@
             </div>
 
 
-            <!-- About // Coming Soon-->
-              <!--<div role="tabpanel" class="tab-pane" id="artist-about">About</div>-->
-            <!-- / -->
-
           </div>
 
         </div>
 
       </div>
 
-    </div>
+
 
 {% endblock %}
 

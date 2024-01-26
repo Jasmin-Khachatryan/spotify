@@ -97,3 +97,4 @@ class UserUpdateView(OwnProFileMixin, UpdateView):
 
         return reverse("user:profile", kwargs={"pk": self.object.pk})
 
+
