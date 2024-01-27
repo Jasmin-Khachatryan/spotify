@@ -41,6 +41,8 @@ def create_checkout_session(request, pk):
 
     return redirect(session.url, code=303)
 
+from django.contrib import messages
+
 class SuccessView(TemplateView):
     template_name = 'home/home.html'
 
@@ -48,6 +50,7 @@ class SuccessView(TemplateView):
         session_id = request.GET.get('session_id')
         if session_id:
             messages.success(request, 'Thank you. Your payment was successfully processed!')
+            return redirect("home:home")
         return super().get(request, *args, **kwargs)
 
 class CancelView(TemplateView):
@@ -56,5 +59,5 @@ class CancelView(TemplateView):
     def get(self, request, *args, **kwargs):
         session_id = request.GET.get('session_id')
         if session_id:
-            messages.success(request, 'Sory. Your payment was canceld!')
+            messages.error(request, 'Sorry. Your payment was canceled!')
         return super().get(request, *args, **kwargs)

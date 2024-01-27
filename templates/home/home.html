@@ -1,15 +1,10 @@
 {% extends "main_base.html" %}
 {% load static %}
+{% include "alert/alert.html" %}
 
 {% block content %}
 
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
+
 <div class="spotify-playlists">
 
     {% for album_chunk in chunked_albums %}
