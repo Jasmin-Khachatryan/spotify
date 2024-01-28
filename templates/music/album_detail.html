@@ -1,25 +1,17 @@
 {% extends "music/liked_songs.html" %}
 {% load static %}
-
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/likedsong.css' %}?{% now " U " %}">
-
-
 {% endblock %}
-
 {% block home %}
 {% endblock %}
-
 {% block search %}
 {% endblock %}
-
 {% block liked-song %}
 active
 {% endblock %}
-
 {% block main %}
 <div class="playlist__banner">
-
     <div class="playlist__left">
         <div class="playlist__album">
             <img src="{{ albums.image.url }}" alt="" class="playlist__img">
@@ -30,9 +22,7 @@ active
         <div class="playlist__name">{{ albums.name }}</div>
         <div>{{ albums.description }}<span class='grey_text'> . {{user_playlist.count}} Songs<span></div>
     </div>
-
 </div>
-
 <div class="playlist__list">
     <div class="playlist__header" >
         <div class="playlist__headerTitle"># Title</div>
@@ -43,8 +33,6 @@ active
         </div>
     </div>
     <hr class="divider">
-
-
     <div class="playlist__songlist">
         {% for song in albums.music.all %}
         <form action="" method="get">
@@ -55,14 +43,11 @@ active
                     <div class="playlist__songTitle ellipsis_one_line">
                         {{song.name}}
                     </div>
-
                     <textarea name="song" id="song_name_delete" cols="1" rows="1">{{song.name}}</textarea>
                     </a>
-
                 </div>
                 {% for artist in song.artists.all %}
                 <a href="{% url 'artist:artist_detail' pk=artist.pk %}">{{ artist.pseudonym }}
-
                     <div class="playlist__headerAlbum ellipsis_one_line"></div></a>
                 {% endfor %}
                 <div class="playlist__headerDate">{{song.year}}</div>
@@ -74,9 +59,5 @@ active
         </form>
         {% endfor %}
     </div>
-
-
 </div>
-
-
 {% endblock %}

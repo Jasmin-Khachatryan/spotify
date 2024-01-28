@@ -32,7 +32,7 @@ def create_checkout_session(request, pk):
             'quantity': 1,
         }],
         mode='subscription',
-        success_url=request.build_absolute_uri(reverse('home:home')),
+        success_url=request.build_absolute_uri(reverse('payment:success')),
         cancel_url=request.build_absolute_uri(reverse('payment:cancel')),
     )
 
@@ -41,23 +41,23 @@ def create_checkout_session(request, pk):
 
     return redirect(session.url, code=303)
 
-from django.contrib import messages
+
 
 class SuccessView(TemplateView):
     template_name = 'home/home.html'
 
     def get(self, request, *args, **kwargs):
         session_id = request.GET.get('session_id')
-        if session_id:
-            messages.success(request, 'Thank you. Your payment was successfully processed!')
-            return redirect("home:home")
-        return super().get(request, *args, **kwargs)
+
+        messages.success(request, 'Thank you. Your payment was successfully processed!')
+
+        return redirect("home:home")
 
 class CancelView(TemplateView):
     template_name = 'home/home.html'
 
     def get(self, request, *args, **kwargs):
         session_id = request.GET.get('session_id')
-        if session_id:
-            messages.error(request, 'Sorry. Your payment was canceled!')
-        return super().get(request, *args, **kwargs)
+
+        messages.error(request, 'Sorry. Your payment was canceled!')
+        return redirect("home:home")

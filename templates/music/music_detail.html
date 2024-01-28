@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "main_base.html" %}
 {% load static %}
 
 
@@ -44,7 +44,7 @@
                 <button id="addToPlaylistBtn" class="button-light">ADD</button>
 
                 <button class="button-light more">
-                    <i class="fas fa-heart fa-9x" style="color: #34a247; font-size: 13px; margin-left:6px;"></i>
+                    <i class="fas fa-heart fa-9x" style="color: #34a247; font-size: 13px"></i>
                 </button>
 
 
@@ -75,9 +75,7 @@
                 <a href="#related-artists" aria-controls="related-artists" role="tab" data-toggle="tab">Related Artists</a>
               </li>
 
-              <!--<li role="presentation">
-                <a href="#artist-about" aria-controls="artist-about" role="tab" data-toggle="tab">About</a>
-              </li>-->
+
 
             </ul>
 
@@ -506,10 +504,6 @@
             </div>
 
 
-<!--             About // Coming Soon-->
-<!--              <div role="tabpanel" class="tab-pane" id="artist-about">About</div>-->
-<!--             / -->
-
           </div>
 
         </div>
@@ -517,33 +511,8 @@
       </div>
 
     </div>
-
-
-{% endblock %}
-
-
-        {% block player %}
-        <link href="button.css" rel="stylesheet" />
-<div class="bottom margin">
-    <input type="range" name="range" id="ProgressBar" min="0" max="100" />
-    <div class="songinfo-container">
-        <div class="songinfo">
-            <span id="masterSongName"> CNCO - Tan Facil</span>
-        </div>
-        <div class="songinfo-img">
-            <img src="https://iscale.iheart.com/catalog/artist/31116368" alt="artist photo" id="gif" />
-        </div>
-        <div class="icon">
-            <i class="fas fa-2x fa-step-backward" id="previous"></i>
-            <i class="fa fa-2x fa-play-circle" aria-hidden="true"></i>
-            <i class="fas fa-2x fa-step-forward" id="next"></i>
-        </div>
     </div>
-</div>
 
 
-
-
-<script src="{% static 'js/music_detail.js' %}">  </script>
-</body>
 {% endblock %}
+

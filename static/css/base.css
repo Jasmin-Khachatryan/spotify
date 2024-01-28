@@ -5,7 +5,7 @@
   }
 .content__middle{
     width: 80%;
-    margin-left:17%;
+
 }
 .artist {
   height: 617px;
@@ -523,7 +523,8 @@ button:hover {
   font-size: 13.2px;
   margin-bottom: 10px;
 }
-/* delete herere 888888888888888888888888888888 */
+/* delete herere 888888888888888888888888888888 *//*
+
 
   body {
     background-color: #121212;
@@ -708,4 +709,4 @@ button:hover {
   .topbar .navbar button:active,
   .topbar .navbar button:focus {
     background-color: #f2f2f2;
-  }
+  }*/
