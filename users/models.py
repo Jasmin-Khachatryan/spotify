@@ -30,12 +30,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=155, blank=True, null=True)
     image = models.ImageField(upload_to="users/images/")
     is_staff = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_premium_user = models.BooleanField(default=False)
     is_artist = models.BooleanField(default=False)
 
     objects = UserManager()
     USERNAME_FIELD = "email"
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

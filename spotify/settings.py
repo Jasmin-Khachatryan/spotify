@@ -1,9 +1,12 @@
 import environ
 from pathlib import Path
+from celery.schedules import crontab
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 environ.Env.read_env(BASE_DIR / ".env")
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 
@@ -32,6 +35,8 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "crispy_forms",
     "crispy_bootstrap5",
+    "django_celery_beat",
+    "django_celery_results",
     "home.apps.HomeConfig",
     "music.apps.MusicConfig",
     "artist.apps.ArtistConfig",
@@ -171,3 +176,7 @@ EMAIL_USE_TLS = True
 
 STRIPE_PUBLISHABLE_KEY = env("STRIPE_PUBLISHABLE_KEY")
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
+
+
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = 'django-db'
