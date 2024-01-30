@@ -51,9 +51,10 @@ active
 
     <div class="playlist__songlist">
 {% for song in playlist.music.all %}
+
         <form action="" method="get">
         <div class="playlist__song playlist__row" onclick='playSong("{{ song.file }}","false","true")'>
-        <div class="playlist__headerTitle">
+        <div  id="playlistContainer" class="playlist__headerTitle">
           <img class="playlist__albumimg" src="{{song.image.url}}" alt =''/>
               <a href="{% url "music:detail" song.pk %}">
           <div class="playlist__songTitle ellipsis_one_line">

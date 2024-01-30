@@ -3,7 +3,7 @@
     color: #fff;
     height: 280px;
     background: linear-gradient(transparent,rgba(0,0,0,.5)), rgb(70, 62, 118);
-    /* background: linear-gradient(rgba(0,0,0,.6),#121212), rgb(70, 62, 118); */
+
 }
 .navbar {
     background:  rgb(70, 62, 118);
@@ -132,3 +132,47 @@
 #song_name_delete{
   display: none;
 }
+
+audio {
+    width: 300px;
+}
+
+
+#myAudio {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+
+    margin-left:17%;
+}
+
+#myAudio::-webkit-media-controls-panel {
+    background-color: #f0f0f0;
+
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#myAudio::-webkit-media-controls-play-button,
+#myAudio::-webkit-media-controls-pause-button {
+    background-color: #333;
+    border-radius: 50%;
+}
+
+#myAudio::-webkit-media-controls-current-time-display,
+#myAudio::-webkit-media-controls-time-remaining-display {
+    color: #333;
+}
+
+#myAudio::-webkit-media-controls-mute-button,
+#myAudio::-webkit-media-controls-volume-slider {
+    color: #333;
+}
+
+#myAudio::-webkit-media-controls-volume-slider {
+    width: 30px; /* Set your desired width */
+}
+
+#myAudio::-webkit-media-controls-fullscreen-button {
+    display: none; /* Hide fullscreen button */
+}
+
+

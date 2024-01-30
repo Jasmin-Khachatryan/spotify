@@ -1,15 +1,10 @@
 {% extends "main_base.html" %}
 {% load static %}
 
-
-
-
-
 {% block content %}
 
-
-
-<link rel="stylesheet"  href="{% static "css/music_detail.css" %}">
+<script src="{% static 'js/music_detail.js' %}"></script>
+<link rel="stylesheet"  href="{% static 'css/music_detail.css' %}">
 
     <div class="content__middle">
 
@@ -38,10 +33,9 @@
               <div class="artist__info__actions">
 
                 <button class="button-dark">
-                  Play
+                  Add
                 </button>
 
-                <button id="addToPlaylistBtn" class="button-light">ADD</button>
 
                 <button class="button-light more">
                     <i class="fas fa-heart fa-9x" style="color: #34a247; font-size: 13px"></i>
@@ -512,6 +506,8 @@
 
     </div>
     </div>
+
+
 
 
 {% endblock %}

@@ -1,47 +1,3 @@
-<script>
-    // Drag cards......
-    const sliders = document.getElementsByClassName('cardContainer');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-    for (let ind=0; ind<sliders.length; ind++){
-        let slider = sliders[ind];
-        slider.addEventListener('mousedown', (e) => {
-          isDown = true;
-          slider.classList.add('dragging');
-          startX = e.pageX - slider.offsetLeft;
-          scrollLeft = slider.scrollLeft;
-        });
-        slider.addEventListener('mouseleave', () => {
-          isDown = false;
-          slider.classList.remove('dragging');
-        });
-        slider.addEventListener('mouseup', () => {
-          isDown = false;
-          slider.classList.remove('dragging');
-        });
-        slider.addEventListener('mousemove', (e) => {
-          if(!isDown) return;
-          e.preventDefault();
-          const x = e.pageX - slider.offsetLeft;
-          const walk = (x - startX) * 1; //scroll-fast
-          slider.scrollLeft = scrollLeft - walk;
-        //   console.log(walk);
-    });
-    }
-
-
-    // global variable for the player
-    var heart = document.getElementById('like-icon');
-    heart.addEventListener("click", function () {
-        document.getElementById('stroke').classList.toggle('hidden');
-        document.getElementById('filled').classList.toggle('hidden');
-        setTimeout(function(){
-            document.getElementById('stroke').classList.toggle('hidden');
-            document.getElementById('filled').classList.toggle('hidden');
-        }, 500);
-    });
-
 
     function iframeToggle() {
         document.getElementById('ytbPlayerCont').classList.toggle('hidden');
@@ -262,4 +218,3 @@ progressBar.addEventListener('input', function () {
       })
 
     });
-</script>
