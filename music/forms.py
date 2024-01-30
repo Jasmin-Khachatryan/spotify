@@ -8,8 +8,6 @@ class MusicAddForm(forms.ModelForm):
     artist = forms.ModelChoiceField(queryset=Artist.objects.all())
     album = forms.ModelChoiceField(queryset=Album.objects.all(), required=False)
 
-
-
     class Meta:
         model = Music
         fields = ("name", "category", "artist", "album", "image", "cover_image", "description",
@@ -17,9 +15,9 @@ class MusicAddForm(forms.ModelForm):
 
         widgets = {
             'name': forms.TextInput(
-                attrs={'class': 'form-control', 'placeholder': 'Enter music name' }),
-            'category': forms.Select(attrs={'class': 'form-control' }),
-            'artist': forms.Select(attrs={'class': 'form-control' }),
+                attrs={'class': 'form-control', 'placeholder': 'Enter music name'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
+            'artist': forms.Select(attrs={'class': 'form-control'}),
             'album': forms.Select(attrs={'class': 'form-control'}),
             'image': forms.FileInput(attrs={'class': 'form-control', 'size': '50'}),
             'cover_image': forms.FileInput(attrs={'class': 'form-control',  'size': '50'}),

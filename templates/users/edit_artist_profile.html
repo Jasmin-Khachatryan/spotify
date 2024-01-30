@@ -1,0 +1,12 @@
+<!-- users/edit_artist_profile.html -->
+
+
+
+
+  <h2>Edit Artist Profile</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save Changes</button>
+  </form>
+

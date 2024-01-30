@@ -44,3 +44,11 @@ class ProfileForm(forms.ModelForm):
         model = User
         fields = ("first_name", "last_name",
                   "email", "image")
+
+
+class ArtistProfileForm(ProfileForm):
+    cover_photo = forms.ImageField(required=False)
+    pseudonym = forms.CharField(max_length=255, required=False)
+
+    class Meta(ProfileForm.Meta):
+        fields = ProfileForm.Meta.fields + ("cover_photo", "pseudonym")

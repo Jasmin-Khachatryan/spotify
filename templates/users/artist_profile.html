@@ -1,0 +1,173 @@
+
+{% extends "main_base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static "css/music_detail.css" %}">
+
+    <div class="content__middle">
+
+<div class="artist__header" style="background-image: url('{% if user.artist.cover_image %}{{ user.artist.cover_image.url }}{% else %}{% static 'img/default_cover_image.png' %}{% endif %}');">
+
+          <div class="artist__info">
+
+            <div class="profile__img">
+
+      <img src="{% if user.artist.image %}{{ user.artist.image.url }}{% else %}{% static 'img/no_image.jpeg' %}{% endif %}"/>
+
+            </div>
+
+            <div class="artist__info__meta">
+
+              <div class="artist__info__type " style="font-weight: 700;font-size: 12px;">Artist</div>
+
+              <div class="artist__info__name" style="
+  font-size: 72px;
+  font-weight: 900;
+  letter-spacing: -.04em;">{{user.artist.pseudonym}}</div>
+
+
+
+              <div class="artist__info__actions">
+
+                <button class="button-dark">
+                  ADD music
+                </button>
+<a href="{% url "user:edit_profile" user.pk %}">
+                <button class="button-light"> Edit profile</button>
+</a>
+
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+          <div class="artist__listeners">
+
+            <div class="artist__listeners__count">{{ user.artist.followers|intcomma  }}</div>
+
+            <div class="artist__listeners__label">Followers</div>
+
+          </div>
+
+          <div class="artist__navigation">
+
+            <ul class="nav nav-tabs" role="tablist">
+
+              <li role="presentation" class="active">
+                <a href="#artist-overview" aria-controls="artist-overview" role="tab" data-toggle="tab">Overview</a>
+              </li>
+
+              <li role="presentation">
+                <a href="#related-artists" aria-controls="related-artists" role="tab" data-toggle="tab">Related Artists</a>
+              </li>
+
+
+
+            </ul>
+
+            <div class="artist__navigation__friends">
+
+              <a href="#">
+                <img src="http://zblogged.com/wp-content/uploads/2015/11/17.jpg" alt="" />
+              </a>
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="artist__content">
+
+          <div class="tab-content">
+
+            <div role="tabpanel" class="tab-pane active" id="artist-overview">
+
+              <div class="overview">
+
+                <div class="overview__artist">
+
+
+      {% if user.artist.music.all %}
+        {% with latest_music=artists.music.all|first %}
+        <div class="section-title">Latest Released</div>
+
+      <a href="{% url "music:detail" latest_music.pk %}"></a>
+
+        <div class="latest-release">
+
+            <div class="latest-release__art">
+                <img src="{{ latest_music.image.url }}" alt="{{ latest_music.name }}" />
+            </div>
+
+            <div class="latest-release__song">
+
+                <div class="latest-release__song__title">{{ latest_music.name }}</div>
+
+                <div class="latest-release__song__date">
+                    <span class="day">{{ latest_music.created_at.day }}</span>
+                    <span class="month">{{ latest_music.created_at|date:"F" }}</span>
+                    <span class="year">{{ latest_music.created_at.year }}</span>
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    {% endwith %}
+{% else %}
+    <p>{{user.artist.pseudonym}} has not released any songs yet.</p>
+{% endif %}
+
+
+                    </div>
+
+                  </div>
+
+                  <div class="section-title">Songs</div>
+      {% for song in artists.music.all %}
+              <a href="{% url "music:detail" song.pk %}">  <div class="tracks">
+
+
+
+                    <div class="track">
+
+                      <div class="track__art">
+
+                        <img src="{{ song.image.url }}" alt="When It's Dark Out" />
+
+                      </div>
+
+                      <div class="track__number">{{ forloop.counter }}</div>
+
+                      <div class="track__added">
+
+                        <i class="ion-checkmark-round added"></i>
+
+                      </div>
+
+                      <div class="track__title">{{ song.name }}</div>
+
+                      <div class="track__explicit">
+
+                        <span class="label">{{ song.created_at.year }}</span>
+
+                      </div>
+
+                      <div class="track__plays">{{ song.listens|intcomma}}</div>
+
+                    </div></a>
+
+
+{% endfor %}
+{% endblock %}
+

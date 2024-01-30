@@ -1,7 +1,7 @@
 import stripe
 from django.conf import settings
 from django.shortcuts import redirect, reverse
-from django.views.generic import ListView,TemplateView
+from django.views.generic import ListView, TemplateView
 from django.contrib import messages
 from .models import Account
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -42,7 +42,6 @@ def create_checkout_session(request, pk):
     return redirect(session.url, code=303)
 
 
-
 class SuccessView(TemplateView):
     template_name = 'home/home.html'
 
@@ -52,6 +51,7 @@ class SuccessView(TemplateView):
         messages.success(request, 'Thank you. Your payment was successfully processed!')
 
         return redirect("home:home")
+
 
 class CancelView(TemplateView):
     template_name = 'home/home.html'

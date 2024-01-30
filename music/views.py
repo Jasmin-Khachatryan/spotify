@@ -33,9 +33,6 @@ class PlayListView(ListView):
     context_object_name = "user_musics"
 
 
-
-
-
 class AddMusicView(FormView):
     form_class = MusicAddForm
     template_name = "music/add_music.html"

@@ -10,7 +10,4 @@ urlpatterns = [
     path("album/<int:pk>/", AlbumDetailView.as_view(), name="album_detail"),
     path("playlists/", PlayListView.as_view(), name="playlist"),
     path("add-music/", AddMusicView.as_view(), name="add_music")
-
 ]
-
-
