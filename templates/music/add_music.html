@@ -1,69 +1,68 @@
-{% extends 'main_base.html' %}
+{% load static %}
 
-{% block content %}
-{% load crispy_forms_tags %}
-
-<div class="container" style="margin-left:17%">
-  <h2 class="mt-4 mb-4" style="color:white;">Add Music</h2>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    <div class="form-group" style="color:white">
-      <label form="{{ form.name.id_for_label }}">Name:</label>
-      {{ form.name | crispy }}
+<link rel="stylesheet" href="{% static "css/add_music.css" %}">
+<div class="background"></div>
+<div class="container">
+    <div class="text">
+        Add your song here
     </div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="input-data">
+                {{ form.name }}
+                <div class="underline"></div>
+                <label for="">Song name</label>
+            </div>
 
-    <div class="form-group" style="color:white;">
-      <label form="{{ form.category.id_for_label }}">Category:</label>
-      {{ form.category | crispy }}
-    </div>
+        </div>
+        <div class="form-row">
+            <div class="input-data">
+                {{ form.duration }}
+                <div class="underline"></div>
+                <label for="">Song Duration</label>
+            </div>
 
-    <div class="form-group" style="color:white;">
-      <label form="{{ form.artist.id_for_label }}">Artist:</label>
-      {{ form.artist | crispy }}
-    </div>
+                <div class="input-data">
+                    {{ form.year }}
+                    <div class="underline"></div>
+                    <label for="">Year</label>
+                </div>
+            </div>
 
-    <div class="form-group" style="color:white;">
-      <label form="{{ form.album.id_for_label }}">Album:</label>
-      {{ form.album | crispy }}
-    </div>
+        <div class="form-row">
+            <div class="img-input-data">
+                <label for="">Song main photo</label>
+                {{ form.image }}
+            </div>
+            <div class="img-input-data">
+                <label for="">Cover Photo</label>
+                {{ form.cover_image }}
+            </div>
+            <div class="img-input-data">
+                <label for="">Song file</label>
+                {{ form.file }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-data">
+            {{ form.category }}
+                <label for="">Choose song category</label>
+            </div>
 
-    <div class="form-group" style="color:white;">
-      <label form="{{ form.image.id_for_label }}">Image:</label>
-      {{ form.image | crispy }}
-    </div>
+            <div class="input-data">
+                {{ form.description }}
+                <label for="">Song description</label>
+            </div>
+        </div>
 
-    <div class="form-group" style="color:white;">
-      <label form="{{ form.cover_image.id_for_label }}">Cover Image:</label>
-      {{ form.cover_image | crispy }}
-    </div>
-
-    <div class="form-group" style="color:white;">
-      <label form="{{ form.description.id_for_label }}">Description:</label>
-      {{ form.description | crispy }}
-    </div>
-
-    <div class="form-group" style="color:white;">
-      <label form="{{ form.year.id_for_label }}">Year:</label>
-      {{ form.year | crispy }}
-    </div>
-
-    <div class="form-group" style="color:white;">
-      <label form="{{ form.duration.id_for_label }}">Duration:</label>
-      {{ form.duration | crispy }}
-    </div>
-
-    <div class="form-group" style="color:white;">
-      <label form="{{ form.file.id_for_label }}">File:</label>
-      {{ form.file | crispy }}
-    </div>
-
-    <div class="form-group" style="color:white;">
-      <label form="{{ form.listens.id_for_label }}">Listens:</label>
-      {{ form.listens | crispy }}
-    </div>
-
-    <button type="submit" class="btn btn-primary">Save Music</button>
-  </form>
+        <div class="form-row">
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input type="submit" value="submit">
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
-{% endblock %}

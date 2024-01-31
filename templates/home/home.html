@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<link rel="stylesheet" href="{% static "css/home.css" %}">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
 <div class="spotify-playlists">
 
     {% for album_chunk in chunked_albums %}
@@ -12,7 +12,7 @@
         <div class="list">
             {% for album in album_chunk %}
                 <div class="item">
-                    <a href="{% url "music:album_detail" album.pk %}">
+                    <a href="{% url 'music:album_detail' album.pk %}">
                         <img src="{{ album.image.url }}" />
 
                     <div class="play">

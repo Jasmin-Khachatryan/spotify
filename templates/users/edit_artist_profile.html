@@ -1,12 +1,67 @@
-<!-- users/edit_artist_profile.html -->
 
+{% load static %}
 
+    <link rel="stylesheet" href="{% static "css/edit_artist_profile.css" %}">
+    <div class="background">
+    </div>
+    <div class="container">
+      <div class="text">
+        Edit your Profile
+      </div>
+      <form method="post"  enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+              <div class="input-data">
+                {{ form.first_name }}
 
+                <div class="underline"></div>
+                <label for="">First Name</label>
+              </div>
+              <div class="input-data">
+                {{ form.last_name }}
+                <div class="underline"></div>
+                <label for="">Last Name</label>
+              </div>
+            </div>
+            <div class="form-row">
 
-  <h2>Edit Artist Profile</h2>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save Changes</button>
-  </form>
+              <div class="input-data">
+                {{ form.email }}
+
+                <div class="underline"></div>
+                <label for="">Email Address</label>
+              </div>
+              <div class="input-data">
+                {{ form.pseudonym }}
+
+                <div class="underline"></div>
+                <label for="">Pseudonym</label>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="img-input-data">
+                <label for="">Profile Photo</label>
+
+                {{ form.image }}
+              </div>
+
+              <div class="img-input-data">
+                <label for="">Cover Photo</label>
+
+                {{ form.cover_photo }}
+
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-row submit-btn">
+                <div class="input-data">
+                  <div class="inner"></div>
+                  <input type="submit" value="submit">
+                </div>
+              </div>
+            </div>
+          </form>
+
+      </form>
+    </div>
 

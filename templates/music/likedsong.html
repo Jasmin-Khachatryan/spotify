@@ -49,6 +49,9 @@ active
                         {{song.name}}
                     </div>
                     <textarea name="song" id="song_name_delete" cols="1" rows="1">{{song.name}}</textarea>
+                    <audio id="myAudio" controls >
+                        <source src="{{ song.file.url }}" type="audio/mpeg">
+                    </audio>
                 </div>
                 <div class="playlist__headerAlbum ellipsis_one_line">{{song.song_channel}}</div>
                 <div class="playlist__headerDate">{{song.year}}</div>

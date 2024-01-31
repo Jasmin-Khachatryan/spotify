@@ -1,26 +1,80 @@
-{% load crispy_forms_tags %}
+
 {% load static %}
 
-
 <link rel="stylesheet" href="{% static "css/profile.css" %}">
+
 <main class="container">
     <div class="card">
- <div class="form-group">
-<div class="text-break flex-grow-1" style="color:white;">
-<div class="form-label" style="color:white;">
+        <div class="form-group">
+            <div class="text-break flex-grow-1" style="color:white;">
+                <div class="form-label" style="color:white;">
+                    <form method="POST" enctype="multipart/form-data">
+                        <img src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'img/no_image.jpeg' %}{% endif %}" class="card__image" />
 
-        <form method="POST" enctype="multipart/form-data">
-            <img src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'img/no_image.jpeg' %}{% endif %}" class="card__image" />
-            {% csrf_token %}
-            {{ form|crispy }}
-
-            <div class="d-grid gap-2">
-                <button class="btn btn-success" type="Submit">Submit</button>
+                        {% csrf_token %}
+                        <div class="input-container ic1">
+                            <label for="firstname" class="placeholder">First name</label>
+                            {{ form.first_name }}
+                        </div>
+                        <div class="input-container ic2">
+                            <label for="lastname" class="placeholder">Last name</label>
+                            {{ form.last_name }}
+                        </div>
+                        <div class="input-container ic2">
+                            <label for="email" class="placeholder">Email</label>
+                            {{ form.email }}
+                        </div>
+                        <div class="input-container ic3">
+                            <label for="image" class="placeholder">Profile Photo</label>
+                            {{ form.image }}
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-success" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            </div>
-            </div>
-        </form>
+        </div>
     </div>
-      </div>
+</main>
 
-  </main>
+<style>
+
+  .card {
+    padding: 5em;
+
+  }
+
+    input {
+
+        background: #eaeaeacf;
+        margin: 12px auto;
+        padding: 10px;
+        border: none;
+        outline: none;
+        border-radius: 5px;
+    }
+
+
+    button {
+        width: 60%;
+        height: 40px;
+        margin: 10px auto;
+        justify-content: center;
+        display: block;
+        color: black;
+        background: green;
+        font-size: 1em;
+        font-weight: bold;
+        margin-top: 20px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        transition: .2s ease-in;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background: #0bee0b;
+    }
+</style>

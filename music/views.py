@@ -39,23 +39,6 @@ class AddMusicView(FormView):
     context_object_name = "form"
     success_url = reverse_lazy("home:home")
 
-    def form_valid(self, form):
-        # Save the Music instance
-        music_instance = form.save()
-
-        # Handle saving the related Artist instance
-        artist_id = self.request.POST.get('artist', None)
-        if artist_id:
-            artist_instance = get_object_or_404(Artist, id=artist_id)
-            artist_instance.music.add(music_instance)
-
-        # Handle saving the related Album instance
-        album_id = self.request.POST.get('album', None)
-        if album_id:
-            album_instance = get_object_or_404(Album, id=album_id)
-            album_instance.music.add(music_instance)
-
-        return super().form_valid(form)
 
 
 # class UpdateMusicView(FormView):

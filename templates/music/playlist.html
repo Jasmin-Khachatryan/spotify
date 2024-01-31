@@ -61,8 +61,11 @@ active
           {{song.name}}
           </div>
 
-          <textarea name="song" id="song_name_delete" cols="1" rows="1">{{song.name}}</textarea>
-            </a>
+          <textarea name="song" id="song_name_delete" cols="1" rows="1">{{song.name}}</textarea></a>
+            <audio id="myAudio" controls >
+                <source src="{{ song.file.url }}" type="audio/mpeg">
+            </audio>
+
 
           </div>
             {% for artist in song.artists.all %}

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.core.exceptions import ValidationError
+from payment.models import Account
 
 
 class UserManager(BaseUserManager):
@@ -34,6 +35,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_premium_user = models.BooleanField(default=False)
     is_artist = models.BooleanField(default=False)
 
+    account = models.OneToOneField(Account, on_delete=models.CASCADE, null=True, blank=True)
     objects = UserManager()
     USERNAME_FIELD = "email"
 

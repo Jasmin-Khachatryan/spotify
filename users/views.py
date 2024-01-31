@@ -11,6 +11,7 @@ from django.views.generic.edit import CreateView
 from django.conf import settings
 from helpers.mixins import OwnProFileMixin
 from artist.models import Artist
+
 from .forms import RegistrationForm, ProfileForm, ArtistProfileForm, EmailForm
 from .tasks import send_simple_email
 from .generate_token import account_activation_token
@@ -128,7 +129,7 @@ class UserUpdateView(OwnProFileMixin, UpdateView):
         user_instance.save()
 
         if user_instance.is_artist:
-            # Retrieve or create an associated Artist instance
+
             artist_instance, created = Artist.objects.get_or_create(user=user_instance)
             artist_instance.pseudonym = form.cleaned_data.get('pseudonym')
             artist_instance.cover_image = form.cleaned_data.get('cover_photo')
