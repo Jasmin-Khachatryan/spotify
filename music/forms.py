@@ -8,7 +8,11 @@ class MusicAddForm(forms.ModelForm):
 
     class Meta:
         model = Music
+<<<<<<< HEAD
         fields = ("name", "category", "image", "cover_image", "description",
+=======
+        fields = ("name", "category", "artist", "album", "image", "cover_image", "description",
+>>>>>>> 09e45ad298ffa38e89027e6750a60b24c1d09cda
                   "year", "duration", "file")
 
 

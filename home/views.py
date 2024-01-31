@@ -1,4 +1,3 @@
-# from django.shortcuts import render
 from django.views.generic import TemplateView, ListView
 from music.models import Album
 
@@ -18,12 +17,7 @@ class HomeView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-
-        # Fetch all albums with related category
-        albums = Album.objects.prefetch_related('category').all()
-
-        # Organize albums into chunks of 6
+        albums = Album.objects.prefetch_related("category").all()
         chunked_albums = [albums[i:i + 6] for i in range(0, len(albums), 6)]
-
-        context['chunked_albums'] = chunked_albums
+        context["chunked_albums"] = chunked_albums
         return context

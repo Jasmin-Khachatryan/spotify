@@ -15,7 +15,7 @@ from artist.models import Artist
 from .forms import RegistrationForm, ProfileForm, ArtistProfileForm, EmailForm
 from .tasks import send_simple_email
 from .generate_token import account_activation_token
-
+from music.models import Music
 User = get_user_model()
 
 
@@ -102,6 +102,9 @@ class UserProfileView(DetailView):
         else:
             return ["users/profile.html"]
 
+    # def get_queryset(self):
+    #     return User.objects.select_related("user").prefetch_related("music").order_by("pk")
+
 
 class UserUpdateView(OwnProFileMixin, UpdateView):
     model = User
@@ -124,12 +127,17 @@ class UserUpdateView(OwnProFileMixin, UpdateView):
 
         return initial
 
+
+
     def form_valid(self, form):
         user_instance = form.save(commit=False)
         user_instance.save()
 
         if user_instance.is_artist:
+<<<<<<< HEAD
 
+=======
+>>>>>>> 09e45ad298ffa38e89027e6750a60b24c1d09cda
             artist_instance, created = Artist.objects.get_or_create(user=user_instance)
             artist_instance.pseudonym = form.cleaned_data.get('pseudonym')
             artist_instance.cover_image = form.cleaned_data.get('cover_photo')

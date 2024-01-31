@@ -29,12 +29,23 @@
 
 
               <div class="artist__info__actions">
+<<<<<<< HEAD
 
                   <a href="{% url "music:add_music" %}"><button class="button-dark">
                   ADD music
                 </button>
                   </a>
         <a href="{% url 'user:edit_profile' user.pk %}"><button class="button-light"> Edit profile</button></a>
+=======
+<a href="{% url "music:add_music"%}">
+                <button class="button-dark">
+                  ADD music
+                </button>
+    </a>
+<a href="{% url "user:edit_profile" user.pk %}">
+                <button class="button-light"> Edit profile</button>
+</a>
+>>>>>>> 09e45ad298ffa38e89027e6750a60b24c1d09cda
 
 
               </div>
@@ -92,6 +103,7 @@
                 <div class="overview__artist">
 
 
+<<<<<<< HEAD
       {% if user.artist.music.all %}
         {% with latest_music=artists.music.all|first %}
             <div class="section-title">Latest Released</div>
@@ -124,20 +136,29 @@
 
 
                     </div>
+=======
+
+>>>>>>> 09e45ad298ffa38e89027e6750a60b24c1d09cda
 
                   </div>
 
                   <div class="section-title">Songs</div>
+<<<<<<< HEAD
                 {% for song in artists.music.all %}
               <a href="{% url 'music:detail' song.pk %}"> <div class="tracks">
+=======
+      {% for song in user.artist.music.all %}
+
+                  <div class="tracks">
+>>>>>>> 09e45ad298ffa38e89027e6750a60b24c1d09cda
 
 
 
                     <div class="track">
 
                       <div class="track__art">
-
-                        <img src="{{ song.image.url }}" alt="When It's Dark Out" />
+ <a href="{% url "music:detail" song.pk %}">
+                        <img src="{{ song.image.url }}" alt="When It's Dark Out" /></a>
 
                       </div>
 
@@ -148,18 +169,17 @@
                         <i class="ion-checkmark-round added"></i>
 
                       </div>
+<a href="{% url "music:detail" song.pk %}">
+                      <div class="track__title">{{ song.name }}</div></a>
 
-                      <div class="track__title">{{ song.name }}</div>
 
-                      <div class="track__explicit">
-
-                        <span class="label">{{ song.created_at.year }}</span>
-
-                      </div>
 
                       <div class="track__plays">{{ song.listens|intcomma}}</div>
+                      <a href="{% url "music:edit_music" song.pk %}"><div class="track__plays">Edit</div></a>
+                        <div class="track__plays">Delete</div>
 
                     </div>
+<<<<<<< HEAD
             </div>
                 </a>
                     {% endfor %}
@@ -167,5 +187,10 @@
           </div>
         </div>
     </div>
+=======
+
+
+{% endfor %}
+>>>>>>> 09e45ad298ffa38e89027e6750a60b24c1d09cda
 {% endblock %}
 
