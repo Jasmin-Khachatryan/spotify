@@ -8,3 +8,9 @@ class ArtistDetailView(DetailView):
     template_name = "artist/artist.html"
     context_object_name = "artists"
     pk_url_kwarg = "pk"
+
+    def get_queryset(self):
+        return Artist.objects.select_related("user").prefetch_related("music").order_by("pk")
+
+
+

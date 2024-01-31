@@ -19,3 +19,4 @@ class Artist(models.Model):
 
     def __str__(self):
         return self.pseudonym or f"Artist {self.id}"
+

@@ -1,9 +1,9 @@
 # from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
+from django.views.generic import DetailView, ListView, FormView, UpdateView
 from artist.models import Artist
 from .models import Music, Album, PlaylistSong
-from django.views.generic import DetailView, ListView, FormView
 from .forms import MusicAddForm
 
 
@@ -26,11 +26,17 @@ class AlbumDetailView(DetailView):
     pk_url_kwarg = "pk"
     context_object_name = "albums"
 
+    def get_queryset(self):
+        return Album.objects.select_related("category").prefetch_related("music__artists").order_by("pk")
+
 
 class PlayListView(ListView):
     model = PlaylistSong
     template_name = "music/playlist.html"
     context_object_name = "user_musics"
+
+    def get_queryset(self):
+        return PlaylistSong.objects.select_related("user").prefetch_related("music__artists").order_by("pk")
 
 
 class AddMusicView(FormView):
@@ -40,16 +46,13 @@ class AddMusicView(FormView):
     success_url = reverse_lazy("home:home")
 
     def form_valid(self, form):
-        # Save the Music instance
         music_instance = form.save()
 
-        # Handle saving the related Artist instance
         artist_id = self.request.POST.get('artist', None)
         if artist_id:
             artist_instance = get_object_or_404(Artist, id=artist_id)
             artist_instance.music.add(music_instance)
 
-        # Handle saving the related Album instance
         album_id = self.request.POST.get('album', None)
         if album_id:
             album_instance = get_object_or_404(Album, id=album_id)
@@ -58,33 +61,68 @@ class AddMusicView(FormView):
         return super().form_valid(form)
 
 
-# class UpdateMusicView(FormView):
-#     template_name = "music/update_music.html"
-#     form_class = MusicAddForm
-#     success_url = reverse_lazy("home:home")
-#
-#     def get_form(self, form_class=None):
-#         music_id = self.kwargs['pk']  # Assuming your URL includes the music ID as 'pk'
-#         music_instance = get_object_or_404(Music, id=music_id)
-#         return self.form_class(instance=music_instance, **self.get_form_kwargs())
+class UpdateMusicView(UpdateView):
+    model = Music
+    form_class = MusicAddForm
+    template_name = "music/edit_music.html"
+    success_url = reverse_lazy("home:home")
+
+    def get_object(self, queryset=None):
+        # Retrieve the Music instance to be updated
+        return get_object_or_404(Music, pk=self.kwargs['pk'])
+
+    def get_initial(self):
+        initial = super().get_initial()
+
+        # Populate initial values for artists, albums, and categories
+        initial['category'] = self.object.category.all()
+        initial['album'] = self.object.album_music.all()  # Assuming related name is 'album_music'
+        initial['artist'] = self.object.artists.all()
+
+        return initial
+
+
+def form_valid(self, form):
+    music_instance = form.save()
+
+    artist_id = self.request.POST.get('artist', None)
+    if artist_id:
+        artist_instance = get_object_or_404(Artist, id=artist_id)
+        artist_instance.music.add(music_instance)
+
+    album_id = self.request.POST.get('album', None)
+    if album_id:
+        album_instance = get_object_or_404(Album, id=album_id)
+        album_instance.music.add(music_instance)
+
+    return super().form_valid(form)
+
+# class UpdatePizzaView(UpdateView):
+#     model = Music
+#     form_class = PizzaForm
+#     template_name = "pizza/update_pizza.html"
+#     context_object_name = "form"
+#     pk_url_kwarg = "pk"
 #
 #     def form_valid(self, form):
-#         music_id = self.kwargs['pk']
-#         music_instance = get_object_or_404(Music, id=music_id)
-#
-#         # Update the Music instance with the new form data
-#         music_instance.name = form.cleaned_data['name']
-#         music_instance.category.set(form.cleaned_data['category'])
-#         music_instance.artist = form.cleaned_data['artist']
-#         music_instance.album = form.cleaned_data['album']
-#         music_instance.image = form.cleaned_data['image']
-#         music_instance.cover_image = form.cleaned_data['cover_image']
-#         music_instance.description = form.cleaned_data['description']
-#         music_instance.year = form.cleaned_data['year']
-#         music_instance.duration = form.cleaned_data['duration']
-#         music_instance.file = form.cleaned_data['file']
-#         music_instance.listens = form.cleaned_data['listens']
-#
-#         music_instance.save()
-#
+#         form.save(commit=True)
+#         messages.info(self.request, "Pizza was updated successfully!")
 #         return super().form_valid(form)
+#
+#     def get_success_url(self):
+#         return reverse("pizza_info", kwargs={"pk": self.object.pk})
+#
+#     def get_queryset(self):
+#         return Pizza.objects.all()
+
+
+# class DeletePizzaView(DeleteView):
+#     model = Pizza
+#     template_name = "pizza/delete_pizza.html"
+#     context_object_name = "pizza"
+#     success_url = reverse_lazy("pizzas")
+#     pk_url_kwarg = "pk"
+#
+#     def delete(self, request, *args, **kwargs):
+#         messages.error(request, "pizza was deleted successfully!")
+#         return super().delete(request, *args, **kwargs)

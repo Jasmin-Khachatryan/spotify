@@ -102,13 +102,15 @@
         {% with latest_music=artists.music.all|first %}
         <div class="section-title">Latest Released</div>
 
-      <a href="{% url "music:detail" latest_music.pk %}"></a>
+      <a href="{% url "music:detail" latest_music.pk %}">
 
         <div class="latest-release">
 
             <div class="latest-release__art">
                 <img src="{{ latest_music.image.url }}" alt="{{ latest_music.name }}" />
             </div>
+
+
 
             <div class="latest-release__song">
 
@@ -127,6 +129,7 @@
             </div>
 
         </div>
+                      </a>
     {% endwith %}
 {% else %}
     <p>{{ artist.first_name }} {{ artist.last_name }} has not released any songs yet.</p>
