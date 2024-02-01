@@ -31,11 +31,13 @@
               <div class="artist__info__name">{{ music.name }}</div>
 
               <div class="artist__info__actions">
-
-                <button class="button-dark">
-                  <a href="/">Add</a>
-                </button>
-
+                <form method="post" action="{% url 'music:add_to_playlist' music.id %}">
+                  {% csrf_token %}
+                  <input type="hidden" name="music_id" value="{{music.id }}">
+                    <button class="button-dark">
+                      Add
+                  </button>
+                </form>
 
                 <button class="button-light more">
                     <i class="fas fa-heart fa-9x" style="color: #34a247; font-size: 13px"></i>

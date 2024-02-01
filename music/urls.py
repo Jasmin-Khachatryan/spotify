@@ -1,4 +1,4 @@
-from .views import MusicDetailView, LikedMusicView, AlbumDetailView, PlayListView, AddMusicView, UpdateMusicView
+from .views import MusicDetailView, LikedMusicView, AlbumDetailView, PlayListView, AddMusicView, UpdateMusicView,AddToPlaylist
 from django.urls import path
 
 
@@ -12,5 +12,6 @@ urlpatterns = [
 
     path("add-music/", AddMusicView.as_view(), name="add_music"),
     path("edit-music/<int:pk>/", UpdateMusicView.as_view(), name="edit_music"),
+    path("add-to-playlist/<int:music_id>/", AddToPlaylist.as_view(), name="add_to_playlist"),
 
 ]

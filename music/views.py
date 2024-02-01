@@ -1,7 +1,9 @@
 # from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.shortcuts import get_object_or_404
-from django.views.generic import DetailView, ListView, FormView, UpdateView,TemplateView
+from django.shortcuts import get_object_or_404, redirect
+from django.views.generic import DetailView, ListView, FormView, UpdateView
+from django.views import View
 from artist.models import Artist
 from .models import Music, Album, PlaylistSong
 from .forms import MusicAddForm
@@ -30,6 +32,15 @@ class AlbumDetailView(DetailView):
     def get_queryset(self):
         return Album.objects.select_related("category").prefetch_related("music__artists").order_by("pk")
 
+
+class AddToPlaylist(LoginRequiredMixin, View):
+    def post(self, request, music_id):
+        music = Music.objects.get(id=music_id)
+        if not request.user.playlistsong_set.exists():
+            PlaylistSong.objects.create(name="Best Playlist", user=request.user)
+        playlist = request.user.playlistsong_set.first()
+        playlist.music.add(music)
+        return redirect("music:playlist")
 
 class PlayListView(ListView):
     model = PlaylistSong

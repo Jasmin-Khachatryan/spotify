@@ -22,7 +22,9 @@ active
 {% for playlist in user_musics %}
 	<div class="playlist__left">
 		<div class="playlist__album">
+            {% if playlist.image %}
 			<img src="{{ playlist.image.url }}" alt="" class="playlist__img">
+            {% endif %}
         </div>
     </div>
     <div class="playlist__right">
