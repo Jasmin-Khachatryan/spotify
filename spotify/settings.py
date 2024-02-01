@@ -178,7 +178,6 @@ EMAIL_USE_TLS = True
 
 STRIPE_PUBLISHABLE_KEY = env("STRIPE_PUBLISHABLE_KEY")
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
-<<<<<<< Updated upstream
 
 
 CELERY_BROKER_URL = "redis://localhost:6379"
@@ -192,5 +191,4 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ]
 }
-=======
->>>>>>> Stashed changes
+

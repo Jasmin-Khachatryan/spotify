@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 *{
   margin: 0;
   outline: none;
@@ -13,7 +12,6 @@ body{
   min-height: 100vh;
   padding: 10px;
   font-family: 'Poppins', sans-serif;
-
 }
 .background {
   background-image: url('https://www.omarimc.com/wp-content/uploads/2022/09/photo-1616356607338-fd87169ecf1a.jpeg');
@@ -26,9 +24,7 @@ body{
   opacity: 0.9;
   z-index: -1;
 }
-
 .container{
-	height: 600px;
   width: 800px;
   background:  #474747;
   width: 800px;
@@ -43,9 +39,7 @@ body{
   font-family: 'Poppins', sans-serif;
   color:white;
   -webkit-background-clip: text;
-
 }
-
 .container form .form-row{
   display: flex;
   margin: 25px 0;
@@ -59,7 +53,6 @@ form .form-row .input-data{
 form .form-row .img-input-data{
 	width: 60%;
 	height: 40px;
-
 	position: relative;
   }
 form .form-row .textarea{
@@ -78,7 +71,7 @@ form .form-row .textarea{
 .input-data input:valid ~ label, .textarea textarea:valid ~ label{
   transform: translateY(-20px);
   font-size: 14px;
-  color: #3cdb34;
+  color: #3CDB34;
 }
 .textarea textarea{
   resize: none;
@@ -110,7 +103,7 @@ form .form-row .textarea{
   content: "";
   height: 2px;
   width: 100%;
-  background: #34db4a;
+  background: #34DB4A;
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.3s ease;
@@ -123,7 +116,6 @@ form .form-row .textarea{
 }
 .submit-btn .input-data{
   overflow: hidden;
-
   height: 45px;
   width: 45%;
 }
@@ -135,14 +127,14 @@ form .form-row .submit-btn {
   width: 400%;
   position: absolute;
   left: -100%;
-  background: -webkit-linear-gradient(right, #56e469, #0f6d05, #081802, #000000);
+  background: -webkit-linear-gradient(right, #56E469, #0F6D05, #081802, #000000
+);
   transition: all 0.4s;
 }
 .submit-btn .input-data:hover .inner{
   left: 0;
 }
 .submit-btn .input-data input{
-
   background: none;
   border: none;
   color: #fff;
@@ -170,247 +162,4 @@ form .form-row .submit-btn {
   .submit-btn .input-data{
     width: 40%!important;
   }
-
 }
-=======
-@charset "UTF-8";
-.m-b-xs {
-  margin-bottom: 2%;
-}
-
-.m-b-md {
-  margin-bottom: 10%;
-}
-
-.m-t-xs {
-  margin-top: 2%;
-}
-
-.m-t-sm {
-  margin-top: 5%;
-}
-
-* {
-  outline: 0 !important;
-}
-
-body {
-  padding: 2% 0;
-  background-color: #37404a;
-}
-
-h1 {
-  font-family: "Roboto", sans-serif;
-  font-size: 2.2em;
-  font-weight: 300;
-  color: #85ffc7;
-  text-transform: uppercase;
-}
-
-p {
-  font-family: "Roboto", sans-serif;
-  font-size: 1.1em;
-  font-weight: 300;
-  color: #fff;
-}
-
-a {
-  color: #fff;
-}
-a:hover {
-  text-decoration: none;
-  color: #fff;
-}
-
-#survey-form label,
-#survey-form .labels {
-  display: block;
-  margin-bottom: 2%;
-  font-family: "Roboto", sans-serif;
-  font-size: 1.1em;
-  font-weight: 300;
-  color: #fff;
-  letter-spacing: 0.5px;
-}
-#survey-form input::-webkit-input-placeholder {
-  color: transparent !important;
-}
-#survey-form input::-moz-placeholder {
-  color: transparent !important;
-}
-#survey-form input:-ms-input-placeholder {
-  color: transparent !important;
-}
-#survey-form input:-moz-placeholder {
-  color: transparent !important;
-}
-#survey-form input,
-#survey-form select {
-  display: block;
-  width: 100%;
-  overflow: hidden;
-  outline: none;
-  border: 2px solid #333;
-}
-#survey-form input {
-  margin-top: 1.5%;
-  padding: 0 0 5px 0;
-  background: transparent;
-  border: none;
-  outline: none;
-  border-bottom: 2px solid #fff;
-  font-size: 1.1em;
-  font-weight: 300;
-  color: #85ffc7;
-}
-#survey-form input:focus {
-  border-color: #85ffc7;
-}
-#survey-form [type=checkbox],
-#survey-form [type=radio] {
-  display: inline-block;
-  width: auto;
-  margin: 0px 10px 0 0;
-}
-#survey-form [type=checkbox],
-#survey-form [type=radio] {
-  display: inline-block;
-  margin: 0 10px 0 0 !important;
-  position: relative;
-  top: 5px;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
-  appearance: none;
-  height: 23px;
-  width: 23px;
-  transition: all 0.15s ease-out 0s;
-  background: #37404a;
-  color: #fff;
-  cursor: pointer;
-  outline: none;
-  z-index: 1000;
-  border: 1px solid #fff;
-}
-#survey-form [type=checkbox]:hover,
-#survey-form [type=radio]:hover {
-  border-color: #85ffc7;
-}
-#survey-form [type=checkbox]:checked:before,
-#survey-form [type=radio]:checked:before {
-  display: inline-block;
-  height: 21px;
-  width: 21px;
-  position: relative;
-  left: 0;
-  bottom: 0;
-  content: "";
-  text-align: center;
-  font-family: "Glyphicons Halflings";
-  line-height: 20px;
-  font-size: 15px;
-  color: #85ffc7;
-}
-#survey-form [type=checkbox]:focus,
-#survey-form [type=radio]:focus {
-  outline: none;
-  border-color: #fff;
-}
-#survey-form [type=radio] {
-  border-radius: 50%;
-}
-#survey-form [type=radio]:after {
-  border-radius: 50%;
-}
-#survey-form [type=number] {
-  width: 45px;
-}
-#survey-form [type=number]::-webkit-inner-spin-button, #survey-form [type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  margin: 0;
-}
-#survey-form select {
-  height: 40px;
-  padding-left: 5px;
-  background-color: #37404a;
-  border: 2px solid #fff;
-  color: #85ffc7;
-}
-#survey-form select option {
-  padding: 5px 10px;
-  font-weight: 300;
-  cursor: pointer;
-}
-#survey-form select option:hover {
-  background-color: #85ffc7;
-}
-#survey-form textarea {
-  resize: none;
-  margin-top: 2%;
-  padding: 10px 10px 0px 20px;
-  width: 100%;
-  height: 90px;
-  color: #85ffc7;
-  background-color: #37404a;
-  border: 2px solid #fff;
-}
-#survey-form .btn {
-  display: inline-block;
-  position: relative;
-  width: 100%;
-  margin: 3% 0 0 0;
-  height: 45px;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  border: 3px solid #85ffc7;
-  border-radius: 0;
-  font-weight: 500;
-  font-size: 1.2em;
-  color: #85ffc7;
-  text-align: center;
-  background: none;
-  transition: color 0.25s ease;
-}
-#survey-form .btn:after {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background-color: #85ffc7;
-  transform-origin: left;
-  transition: width 0.5s ease;
-  z-index: -1;
-}
-#survey-form .btn:hover {
-  color: #37404a;
-}
-#survey-form .btn:hover:after {
-  width: 100%;
-}
-#survey-form fieldset {
-  margin: 5% 0 0 0;
-}
-
-.copyright {
-  text-align: center;
-  font-size: 10px;
-  color: #fff;
-}
-.copyright i {
-  color: #ef5350;
-}
-
-@media only screen and (max-width: 600px) {
-  body {
-    padding: 8% 0;
-  }
-}
->>>>>>> 09e45ad298ffa38e89027e6750a60b24c1d09cda

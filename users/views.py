@@ -90,7 +90,6 @@ class LoginView(Login):
 
 
 class LogoutView(Logout):
-<<<<<<< Updated upstream
     pass
 
 
@@ -137,10 +136,6 @@ class UserUpdateView(OwnProFileMixin, UpdateView):
         user_instance.save()
 
         if user_instance.is_artist:
-<<<<<<< HEAD
-
-=======
->>>>>>> 09e45ad298ffa38e89027e6750a60b24c1d09cda
             artist_instance, created = Artist.objects.get_or_create(user=user_instance)
             artist_instance.pseudonym = form.cleaned_data.get('pseudonym')
             artist_instance.cover_image = form.cleaned_data.get('cover_photo')
@@ -160,10 +155,3 @@ class UserUpdateView(OwnProFileMixin, UpdateView):
 
     def get_success_url(self):
         return reverse("user:profile", kwargs={"pk": self.object.pk})
-
-
-
-
-=======
-    pass
->>>>>>> Stashed changes

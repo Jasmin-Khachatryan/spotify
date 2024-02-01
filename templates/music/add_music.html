@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <link rel="stylesheet" href="{% static "css/add_music.css" %}">
 <div class="background"></div>
 <div class="container">
@@ -14,7 +15,6 @@
                 <div class="underline"></div>
                 <label for="">Song name</label>
             </div>
-
         </div>
         <div class="form-row">
             <div class="input-data">
@@ -22,14 +22,12 @@
                 <div class="underline"></div>
                 <label for="">Song Duration</label>
             </div>
-
-                <div class="input-data">
-                    {{ form.year }}
-                    <div class="underline"></div>
-                    <label for="">Year</label>
-                </div>
+            <div class="input-data">
+                {{ form.year }}
+                <div class="underline"></div>
+                <label for="">Year</label>
             </div>
-
+        </div>
         <div class="form-row">
             <div class="img-input-data">
                 <label for="">Song main photo</label>
@@ -46,17 +44,14 @@
         </div>
         <div class="form-row">
             <div class="input-data">
-            {{ form.category }}
+                {{ form.category }}
                 <label for="">Choose song category</label>
             </div>
-
             <div class="input-data">
                 {{ form.description }}
                 <label for="">Song description</label>
             </div>
         </div>
-
-<<<<<<< HEAD
         <div class="form-row">
             <div class="form-row submit-btn">
                 <div class="input-data">
@@ -66,35 +61,4 @@
             </div>
         </div>
     </form>
-=======
-    <div class="form-group" style="color:white;">
-      <label form="{{ form.cover_image.id_for_label }}">Cover Image:</label>
-      {{ form.cover_image | crispy }}
-    </div>
-
-    <div class="form-group" style="color:white;">
-      <label form="{{ form.description.id_for_label }}">Description:</label>
-      {{ form.description | crispy }}
-    </div>
-
-    <div class="form-group" style="color:white;">
-      <label form="{{ form.year.id_for_label }}">Year:</label>
-      {{ form.year | crispy }}
-    </div>
-
-    <div class="form-group" style="color:white;">
-      <label form="{{ form.duration.id_for_label }}">Duration:</label>
-      {{ form.duration | crispy }}
-    </div>
-
-    <div class="form-group" style="color:white;">
-      <label form="{{ form.file.id_for_label }}">File:</label>
-      {{ form.file | crispy }}
-    </div>
-
-
-
-    <button type="submit" class="btn btn-primary">Save Music</button>
-  </form>
->>>>>>> 09e45ad298ffa38e89027e6750a60b24c1d09cda
 </div>

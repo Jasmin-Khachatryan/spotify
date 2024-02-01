@@ -1,7 +1,7 @@
 # from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
-from django.views.generic import DetailView, ListView, FormView, UpdateView
+from django.views.generic import DetailView, ListView, FormView, UpdateView,TemplateView
 from artist.models import Artist
 from .models import Music, Album, PlaylistSong
 from .forms import MusicAddForm
@@ -12,6 +12,7 @@ class MusicDetailView(DetailView):
     template_name = "music/music_detail.html"
     pk_url_kwarg = "pk"
     context_object_name = "music"
+
 
 
 class LikedMusicView(ListView):
@@ -45,8 +46,6 @@ class AddMusicView(FormView):
     context_object_name = "form"
     success_url = reverse_lazy("home:home")
 
-<<<<<<< HEAD
-=======
     def form_valid(self, form):
         music_instance = form.save()
 
@@ -61,7 +60,7 @@ class AddMusicView(FormView):
             album_instance.music.add(music_instance)
 
         return super().form_valid(form)
->>>>>>> 09e45ad298ffa38e89027e6750a60b24c1d09cda
+
 
 
 class UpdateMusicView(UpdateView):
@@ -84,21 +83,20 @@ class UpdateMusicView(UpdateView):
 
         return initial
 
+    def form_valid(self, form):
+        music_instance = form.save()
 
-def form_valid(self, form):
-    music_instance = form.save()
+        artist_id = self.request.POST.get('artist', None)
+        if artist_id:
+            artist_instance = get_object_or_404(Artist, id=artist_id)
+            artist_instance.music.add(music_instance)
 
-    artist_id = self.request.POST.get('artist', None)
-    if artist_id:
-        artist_instance = get_object_or_404(Artist, id=artist_id)
-        artist_instance.music.add(music_instance)
+        album_id = self.request.POST.get('album', None)
+        if album_id:
+            album_instance = get_object_or_404(Album, id=album_id)
+            album_instance.music.add(music_instance)
 
-    album_id = self.request.POST.get('album', None)
-    if album_id:
-        album_instance = get_object_or_404(Album, id=album_id)
-        album_instance.music.add(music_instance)
-
-    return super().form_valid(form)
+        return super().form_valid(form)
 
 # class UpdatePizzaView(UpdateView):
 #     model = Music
