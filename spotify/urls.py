@@ -11,6 +11,7 @@ urlpatterns = [
     path("music/", include("music.urls", namespace="music")),
     path("artist/", include("artist.urls", namespace="artist")),
     path("premium/", include("payment.urls", namespace="payments")),
+<<<<<<< Updated upstream
 
     path("change-password/", auth_views.PasswordChangeView.as_view()),
     path("reset-password/", auth_views.PasswordResetView.as_view(), name="reset_password"),
@@ -23,6 +24,8 @@ urlpatterns = [
     path("api-auth/", include("rest_framework.urls")),
     path("api/v1/artist/", include("artist.api.urls")),
 
+=======
+>>>>>>> Stashed changes
     path("__debug__/", include("debug_toolbar.urls")),
 
 ]

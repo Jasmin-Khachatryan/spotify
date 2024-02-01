@@ -90,6 +90,7 @@ class LoginView(Login):
 
 
 class LogoutView(Logout):
+<<<<<<< Updated upstream
     pass
 
 
@@ -163,3 +164,6 @@ class UserUpdateView(OwnProFileMixin, UpdateView):
 
 
 
+=======
+    pass
+>>>>>>> Stashed changes

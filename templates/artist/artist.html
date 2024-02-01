@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="{% static 'css/music_detail.css' %}">
 
     <div class="content__middle">
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         <div class="artist__header" style="background-image: url('{{ artists.cover_image.url }}');">
 
           <div class="artist__info">
@@ -98,11 +102,15 @@
                             {% with latest_music=artists.music.all|first %}
                             <div class="section-title">Latest Released</div>
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
                           <a href="{% url 'music:detail' latest_music.pk %}"></a>
 =======
       <a href="{% url "music:detail" latest_music.pk %}">
 >>>>>>> 09e45ad298ffa38e89027e6750a60b24c1d09cda
+=======
+      <a href="{% url "music:detail" latest_music.pk %}"></a>
+>>>>>>> Stashed changes
 
                             <div class="latest-release">
 
@@ -127,6 +135,7 @@
 
                                     </div>
 
+<<<<<<< Updated upstream
                                 </div>
 
                             </div>
@@ -139,6 +148,9 @@
 <<<<<<< HEAD
                       </div>
 =======
+=======
+
+>>>>>>> Stashed changes
 
 
             </div>
@@ -154,9 +166,17 @@
 
                     </div>
 
+<<<<<<< Updated upstream
                     <div class="section-title">Popular</div>
                   {% for song in artists.music.all %}
                     <a href="{% url 'music:detail' song.pk %}">  <div class="tracks">
+=======
+                  </div>
+
+                  <div class="section-title">Popular</div>
+      {% for song in artists.music.all %}
+              <a href="{% url "music:detail" song.pk %}">  <div class="tracks">
+>>>>>>> Stashed changes
 
 
 
@@ -405,9 +425,22 @@
               </div>
 
             </div>
+<<<<<<< Updated upstream
           </div>
 
         </div>
     </div>
+=======
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+>>>>>>> Stashed changes
 {% endblock %}
 

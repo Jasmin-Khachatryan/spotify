@@ -1,4 +1,5 @@
 from django.contrib import admin
+<<<<<<< Updated upstream
 from .models import Account
 
 
@@ -25,3 +26,10 @@ class AccountAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Account, AccountAdmin)
+=======
+
+from .models import Account
+
+admin.site.register(Account)
+
+>>>>>>> Stashed changes
