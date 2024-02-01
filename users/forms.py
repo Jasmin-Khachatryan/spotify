@@ -46,6 +46,10 @@ class ProfileForm(forms.ModelForm):
                   "email", "image")
 
 
+class FollowForm(forms.Form):
+    artist_id = forms.IntegerField(widget=forms.HiddenInput())
+
+
 class ArtistProfileForm(ProfileForm):
     cover_photo = forms.ImageField(required=False)
     pseudonym = forms.CharField(max_length=255, required=False)

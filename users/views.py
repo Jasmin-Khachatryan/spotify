@@ -11,7 +11,9 @@ from django.views.generic.edit import CreateView
 from django.conf import settings
 from helpers.mixins import OwnProFileMixin
 from artist.models import Artist
-
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from .forms import RegistrationForm, ProfileForm, ArtistProfileForm, EmailForm
 from .tasks import send_simple_email
 from .generate_token import account_activation_token
@@ -157,3 +159,7 @@ class UserUpdateView(OwnProFileMixin, UpdateView):
 
     def get_success_url(self):
         return reverse("user:profile", kwargs={"pk": self.object.pk})
+
+
+
+

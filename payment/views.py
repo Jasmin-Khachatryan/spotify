@@ -7,6 +7,7 @@ from django.shortcuts import redirect, reverse
 from django.views.generic import ListView, TemplateView
 from django.contrib import messages
 from .models import Account
+
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class PaymentView(ListView):
@@ -28,10 +29,9 @@ def create_checkout_session(request, pk):
     session_id = request.GET.get('session_id')
 
     user = request.user
-
-    if account.name in ["Pro Students", "Pro Account", "Premium Account"]:
-        user.is_premium_user = True
-        user.save()
+    user.account = account
+    user.is_premium_user = True
+    user.save()
 
     session = stripe.checkout.Session.create(
         payment_method_types=['card'],
@@ -57,11 +57,11 @@ class SuccessView(TemplateView):
         session_id = request.GET.get('session_id')
         user = request.user
 
-        if not user.is_premium_user:
-            messages.error(request, 'Sorry. You are not authorized to view this page.')
+        if not user.account in ["Pro Students", "Pro Account", "Premium Account", ]:
+            messages.success(request, 'Thank you. Your payment was successfully processed and your premium status is now active!')
             return redirect("home:home")
 
-        messages.success(request, 'Thank you. Your payment was successfully processed and your premium status is now active!')
+        messages.error(request, 'Sorry. You are not authorized to view this page.')
 
         return redirect("home:home")
 
