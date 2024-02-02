@@ -1,6 +1,5 @@
 {% load static %}
 
-
 <link rel="stylesheet" href="{% static "css/add_music.css" %}">
 <div class="background"></div>
 <div class="container">
@@ -14,6 +13,11 @@
                 {{ form.name }}
                 <div class="underline"></div>
                 <label for="">Song name</label>
+            </div>
+            <div class="input-data">
+                {{ form.artist }}
+                <div class="underline"></div>
+                <label for="">Artist name</label>
             </div>
         </div>
         <div class="form-row">

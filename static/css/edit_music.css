@@ -1,7 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 *{
   margin: 0;
-
   outline: none;
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
@@ -13,7 +12,6 @@ body{
   min-height: 100vh;
   padding: 10px;
   font-family: 'Poppins', sans-serif;
-
 }
 .background {
   background-image: url('https://www.omarimc.com/wp-content/uploads/2022/09/photo-1616356607338-fd87169ecf1a.jpeg');
@@ -27,10 +25,9 @@ body{
   z-index: -1;
 }
 .container{
-	height: 450px;
-  max-width: 800px;
+  height: 600px;
   background:  #474747;
-  width: 600px;
+  width: 800px;
   padding: 25px 40px 10px 40px;
   box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
   border-radius:10%;
@@ -42,12 +39,10 @@ body{
   font-family: 'Poppins', sans-serif;
   color:white;
   -webkit-background-clip: text;
-
 }
-
 .container form .form-row{
   display: flex;
-  margin: 25px 0;
+  margin: 55px 0;
 }
 form .form-row .input-data{
   width: 100%;
@@ -58,7 +53,6 @@ form .form-row .input-data{
 form .form-row .img-input-data{
 	width: 60%;
 	height: 40px;
-	
 	position: relative;
   }
 form .form-row .textarea{
@@ -77,7 +71,7 @@ form .form-row .textarea{
 .input-data input:valid ~ label, .textarea textarea:valid ~ label{
   transform: translateY(-20px);
   font-size: 14px;
-  color: #3cdb34;
+  color: #3CDB34;
 }
 .textarea textarea{
   resize: none;
@@ -109,7 +103,7 @@ form .form-row .textarea{
   content: "";
   height: 2px;
   width: 100%;
-  background: #34db4a;
+  background: #34DB4A;
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.3s ease;
@@ -122,29 +116,27 @@ form .form-row .textarea{
 }
 .submit-btn .input-data{
   overflow: hidden;
-
   height: 45px;
   width: 45%;
 }
 form .form-row .submit-btn {
-    margin-top: 15%;
+    margin-top: 8%;
   }
 .submit-btn .input-data .inner{
   height: 100%;
   width: 400%;
   position: absolute;
   left: -100%;
-  background: -webkit-linear-gradient(right, #56e469, #0f6d05, #081802, #000000);
+  background: -webkit-linear-gradient(right, #56E469, #0F6D05, #081802, #000000
+);
   transition: all 0.4s;
 }
 .submit-btn .input-data:hover .inner{
   left: 0;
 }
 .submit-btn .input-data input{
-
   background: none;
   border: none;
-
   color: #fff;
   font-size: 17px;
   font-weight: 500;
@@ -169,5 +161,5 @@ form .form-row .submit-btn {
   }
   .submit-btn .input-data{
     width: 40%!important;
-  }z
+  }
 }

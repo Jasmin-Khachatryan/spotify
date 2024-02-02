@@ -1,11 +1,68 @@
+{% load static %}
 
 
+<link rel="stylesheet" href="{% static "css/edit_music.css" %}">
+<div class="background"></div>
 <div class="container">
-    <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Update</button>
-    </form>
+    <div class="text">
+        Edit your song here
     </div>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="input-data">
+                {{ form.name }}
+                <div class="underline"></div>
+                <label for="">Song name</label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-data">
+                {{ form.duration }}
+                <div class="underline"></div>
+                <label for="">Song Duration</label>
+            </div>
+            <div class="input-data">
+                {{ form.year }}
+                <div class="underline"></div>
+                <label for="">Year</label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="img-input-data">
+                <label for="">Song main photo</label>
+                {{ form.image }}
+            </div>
+            <div class="img-input-data">
+                <label for="">Cover Photo</label>
+                {{ form.cover_image }}
+            </div>
+            <div class="img-input-data">
+                <label for="">Song file</label>
+                {{ form.file }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-data">
+                {{ form.category }}
+                <label for="">Choose song category</label>
+            </div>
+            <div class="input-data">
+                {{ form.description }}
+                <label for="">Song description</label>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <input type="submit" value="submit">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
 
 

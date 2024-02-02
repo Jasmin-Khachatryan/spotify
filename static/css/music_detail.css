@@ -193,12 +193,13 @@ margin-left:17%;
     margin-top: 40px;
   }
 
-
 .tracks {
-  display: flex;
-  flex-flow: column wrap;
-  margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+
 }
+
 .tracks__heading {
   color: #aaaaaa;
   height: 42px;
@@ -227,7 +228,7 @@ margin-left:17%;
 }
 .tracks .track {
   border-top: 1px solid #282828;
-  height: 42px;
+
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -515,201 +516,4 @@ button:hover {
   font-size: 13.2px;
   margin-bottom: 10px;
 }
-<<<<<<< Updated upstream
-=======
-/* delete herere 888888888888888888888888888888 */
 
-  body {
-    background-color: #121212;
-    font-family: 'Montserrat', sans-serif;
-  }
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 196px;
-    background-color: #000000;
-    padding: 24px;
-  }
-  .sidebar .logo img {
-    width: 130px;
-  }
-  .sidebar .navigation ul {
-    list-style: none;
-    margin-top: 20px;
-  }
-  .sidebar .navigation ul li {
-    padding: 10px 0px;
-  }
-  .sidebar .navigation ul li a {
-    color: #b3b3b3;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 13px;
-  }
-  .sidebar .navigation ul li a:hover,
-  .sidebar .navigation ul li a:active,
-  .sidebar .navigation ul li a:focus {
-    color: #ffffff;
-  }
-  .sidebar .navigation ul li a:hover .fa,
-  .sidebar .navigation ul li a:active .fa,
-  .sidebar .navigation ul li a:focus .fa {
-    color: #b3b3b3;
-  }
-  .sidebar .navigation ul li .fa {
-    font-size: 20px;
-    margin-right: 10px;
-  }
-  .sidebar .navigation ul li a:hover .fa:hover,
-  .sidebar .navigation ul li a:hover .fa:active,
-  .sidebar .navigation ul li a:hover .fa:focus {
-    color: #ffffff;
-  }
-  .sidebar .policies {
-    position: absolute;
-    bottom: 100px;
-  }
-  .sidebar .policies ul {
-    list-style: none;
-  }
-  .sidebar .policies ul li {
-    padding-bottom: 5px;
-  }
-  .sidebar .policies ul li a {
-    color: #b3b3b3;
-    font-weight: 500;
-    text-decoration: none;
-    font-size: 10px;
-  }
-  .sidebar .policies ul li a:hover,
-  .sidebar .policies ul li a:active,
-  .sidebar .policies ul li a:focus {
-    text-decoration: underline;
-  }
-
-  .search-box{
-    margin-left:18%;
-    width: fit-content;
-    height: fit-content;
-    position: relative;
-  }
-  .input-search{
-    height: 50px;
-    width: 50px;
-    border-style: none;
-    padding: 10px;
-    font-size: 18px;
-    letter-spacing: 2px;
-    outline: none;
-    border-radius: 25px;
-    transition: all .5s ease-in-out;
-    background-color: #22b35e;
-    padding-right: 40px;
-    color:#080808;
-  }
-  .input-search::placeholder{
-    color:rgba(255,255,255,.5);
-    font-size: 18px;
-    letter-spacing: 2px;
-    font-weight: 100;
-  }
-  .btn-search{
-    width: 50px;
-    height: 50px;
-    border-style: none;
-    font-size: 20px;
-    font-weight: bold;
-    outline: none;
-    cursor: pointer;
-    border-radius: 50%;
-    position: absolute;
-    right: 0px;
-    color:#070606 ;
-    background-color:transparent;
-    pointer-events: painted;
-  }
-  .btn-search:focus ~ .input-search{
-    width: 300px;
-    border-radius: 0px;
-    background-color: transparent;
-    border-bottom:1px solid rgba(255,255,255,.5);
-    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-  }
-  .input-search:focus{
-    width: 300px;
-    border-radius: 0px;
-    background-color: transparent;
-    border-bottom:1px solid rgba(255,255,255,.5);
-    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-  }
-
-
-  .topbar {
-
-    display: flex;
-    justify-content: space-between;
-    background-color: #101010;
-    padding: 14px 30px;
-  }
-
-  .topbar .navbar {
-
-    display: flex;
-    align-items: left;
-  }
-  .topbar .navbar ul {
-    list-style: none;
-  }
-
-  .topbar .navbar ul li {
-    display: inline-block;
-    margin: 0px 8px;
-    width: 70px;
-  }
-  .topbar .navbar ul li a {
-    color: #b3b3b3;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-    letter-spacing: 1px;
-  }
-  .topbar .navbar ul li a:hover,
-  .topbar .navbar ul li a:active,
-  .topbar .navbar ul li a:focus {
-    color: #ffffff;
-    font-size: 15px;
-  }
-  .topbar .navbar ul li.divider {
-    color: #ffffff;
-    font-size: 26px;
-    margin: 0px 20px;
-    width: auto;
-  }
-  .topbar .navbar button {
-    background-color: #ffffff;
-    color: #000000;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 14px 30px;
-    border: 0px;
-    border-radius: 40px;
-    cursor: pointer;
-    margin-left: 20px;
-  }
-  .topbar .navbar button:hover,
-  .topbar .navbar button:active,
-  .topbar .navbar button:focus {
-    background-color: #f2f2f2;
-  }
-  .footer{
-      margin-left:-10%;
-    background-color: #24262b;
-      padding: 70px 0;
-<<<<<<< Updated upstream
-  }
->>>>>>> Stashed changes
-=======
-  }
->>>>>>> Stashed changes

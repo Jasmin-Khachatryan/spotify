@@ -2,33 +2,31 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
-<link rel="stylesheet" href="{% static "css/music_detail.css" %}">
+<link rel="stylesheet" href="{% static 'css/music_detail.css' %}">
 <div class="content__middle">
     <div class="artist__header" style="background-image: url({% if user.artist.cover_image %}{{ user.artist.cover_image.url }}{% else %}{% static 'img/default_cover_image.png' %}{% endif %});">
         <div class="artist__info">
             <div class="profile__img">
-                <img src="{% if user.artist.image %}{{ user.artist.image.url }}{% else %}{% static 'img/no_image.jpeg' %}{% endif %}"/>
+                <img src="{% if user.artist.image %}{{ user.artist.image.url }}{% else %}{% static 'img/no_image.jpeg' %}{% endif %}" />
             </div>
             <div class="artist__info__meta">
                 <div class="artist__info__type " style="font-weight: 700;font-size: 12px;">Artist</div>
-                <div class="artist__info__name" style="
-  font-size: 72px;
-  font-weight: 900;
-  letter-spacing: -.04em;">{{user.artist.pseudonym}}</div>
+                <div class="artist__info__name" style="font-size: 72px;font-weight: 900;letter-spacing: -.04em;">{{user.artist.pseudonym}}</div>
+
                 <div class="artist__info__actions">
-                    <a href="{% url "music:add_music"%}">
-                    <button class="button-dark">
-                        ADD music
-                    </button>
+                    <a href="{% url 'music:add_music' %}">
+                        <button class="button-dark">
+                            ADD music
+                        </button>
                     </a>
-                    <a href="{% url "user:edit_profile" user.pk %}">
-                    <button class="button-light"> Edit profile</button>
+                    <a href="{% url 'user:edit_profile' user.pk %}">
+                        <button class="button-light"> Edit profile</button>
                     </a>
                 </div>
             </div>
         </div>
         <div class="artist__listeners">
-            <div class="artist__listeners__count">{{ user.artist.followers|intcomma  }}</div>
+            <div class="artist__listeners__count">{{ user.artist.followers|intcomma }}</div>
             <div class="artist__listeners__label">Followers</div>
         </div>
         <div class="artist__navigation">
@@ -58,18 +56,30 @@
                     <div class="tracks">
                         <div class="track">
                             <div class="track__art">
-                                <a href="{% url "music:detail" song.pk %}">
-                                <img src="{{ song.image.url }}" alt="When It's Dark Out" /></a>
+                                <a href="{% url 'music:detail' song.pk %}">
+                                    <img src="{{ song.image.url }}" alt="When It's Dark Out" />
+                                </a>
                             </div>
                             <div class="track__number">{{ forloop.counter }}</div>
                             <div class="track__added">
                                 <i class="ion-checkmark-round added"></i>
                             </div>
-                            <a href="{% url "music:detail" song.pk %}">
-                            <div class="track__title">{{ song.name }}</div></a>
+                            <a href="{% url 'music:detail' song.pk %}">
+                                <div class="track__title">{{ song.name }}</div>
+                            </a>
                             <div class="track__plays">{{ song.listens|intcomma}}</div>
-                            <a href="{% url "music:edit_music" song.pk %}"><div class="track__plays">Edit</div></a>
+                            <a href="{% url 'music:edit_music' song.pk %}">
+                                <div class="track__plays">Edit</div>
+                            </a>
                             <div class="track__plays">Delete</div>
                         </div>
-                        {% endfor %}
-                        {% endblock %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
