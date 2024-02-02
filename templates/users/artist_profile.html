@@ -71,7 +71,9 @@
                             <a href="{% url 'music:edit_music' song.pk %}">
                                 <div class="track__plays">Edit</div>
                             </a>
+                            <a href="{% url 'music:delete_song' song.pk %}" >
                             <div class="track__plays">Delete</div>
+                            </a>
                         </div>
                     </div>
                     {% endfor %}

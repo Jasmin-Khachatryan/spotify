@@ -32,21 +32,13 @@
 
         <div class="options-section">
             <div class="options home {% block home %}
-   active {% endblock %}">
+    {% endblock %}">
                 <svg viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
                     <path class='ops'
                         d="M448 463.746h-149.333v-149.333h-85.334v149.333h-149.333v-315.428l192-111.746 192 110.984v316.19z"
                         fill="grey"></path>
                 </svg>
                 <a class='label' href="/">Home</a>
-            </div>
-            <div class="options search {% block search %}{% endblock %}" onclick="document.getElementById('searchBar').focus();">
-                <svg viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
-                    <path class='ops'
-                        d="M349.714 347.937l93.714 109.969-16.254 13.969-93.969-109.969q-48.508 36.825-109.207 36.825-36.826 0-70.476-14.349t-57.905-38.603-38.603-57.905-14.349-70.476 14.349-70.476 38.603-57.905 57.905-38.603 70.476-14.349 70.476 14.349 57.905 38.603 38.603 57.905 14.349 70.476q0 37.841-14.73 71.619t-40.889 58.921zM224 377.397q43.428 0 80.254-21.461t58.286-58.286 21.461-80.254-21.461-80.254-58.286-58.285-80.254-21.46-80.254 21.46-58.285 58.285-21.46 80.254 21.46 80.254 58.285 58.286 80.254 21.461z"
-                        fill="grey" fill-rule="evenodd"></path>
-                </svg>
-                <span class='label'>Search</span>
             </div>
 
             <div class="options library">
@@ -55,22 +47,19 @@
                         d="M291.301 81.778l166.349 373.587-19.301 8.635-166.349-373.587zM64 463.746v-384h21.334v384h-21.334zM192 463.746v-384h21.334v384h-21.334z"
                         fill="grey"></path>
                 </svg>
-                <a href="/playlist" class='label'>Your Library</a>
+                <a href="{% url 'music:playlist' pk=user.id %}" class='label'>Your Playlist</a>
             </div>
 
             <!-- brk change -->
             <div class="options2 ">
                 <span class='label'>Playlists</span>
             </div>
-            <div class="options create {% block liked-song %}
-   {% endblock %}">
-                <img height="40px" class="likedImg" src="https://t.scdn.co/images/3099b3803ad9496896c43f22fe9be8c4.png"
-                    alt=""></img>
-                <a href="/playlist" class='label'>Liked Songs</a>
+            <div class="options create active">
+                {% block liked-song %}
+
+                {% endblock %}
             </div>
         </div>
-
-
     </div>
 
 
@@ -84,24 +73,19 @@
                         ></path>
                 </svg>
             </a>
-            <a class='nav-btn' href="/playlist">
+            <a class='nav-btn' href="{% url 'music:liked_songs' pk=user.id %}">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-suit-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
 </svg>
             </a>
-            <form action="/search" method="get" name="search-form">
+
+            <form action="{% url 'music:playlist_search'%}" method="get" name="search-form">
                 <div class="searchCont">
-            <svg onClick="document.forms['search-form'].submit();" class='searchBarIcon' viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
-                    <path class='ops'
-                        d="M349.714 347.937l93.714 109.969-16.254 13.969-93.969-109.969q-48.508 36.825-109.207 36.825-36.826 0-70.476-14.349t-57.905-38.603-38.603-57.905-14.349-70.476 14.349-70.476 38.603-57.905 57.905-38.603 70.476-14.349 70.476 14.349 57.905 38.603 38.603 57.905 14.349 70.476q0 37.841-14.73 71.619t-40.889 58.921zM224 377.397q43.428 0 80.254-21.461t58.286-58.286 21.461-80.254-21.461-80.254-58.286-58.285-80.254-21.46-80.254 21.46-58.285 58.285-21.46 80.254 21.46 80.254 58.285 58.286 80.254 21.461z"
-                        fill="black" fill-rule="evenodd"></path>
-              </svg>
-            <input class="searchBar" placeholder="Search for song" type="text" name="search" id="searchBar" required>
+            <input class="searchBar" placeholder="Search for song" type="text" name="query" id="searchBar" required>
             </div>
 
             </form>
         </div>
-
 
         <a class="profile-container" href="/logout">
             <button class="profile">
@@ -116,11 +100,8 @@
                 <span class='username hide-onhover'>{{ request.user }}</span>
                 <span class='logout username'>Logout</span>
             </button>
-
-
         </a>
     </div>
-
 
 
     <div class="main" data-simplebar>
@@ -147,11 +128,14 @@
                     {% endfor %}
                 </div>
             </div>
-            {% endfor %}
-
         </div>
-        {% endblock %}
-    </div>
+            {% endfor %}
+        </div>
+    {% endblock %}
+
+</div>
+
+
 
 </body>
 

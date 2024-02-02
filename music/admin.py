@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from music.models import Music, Category, Album, PlaylistSong
+from music.models import Music, Category, Album, PlaylistSong,LikedSong
 from django.templatetags.static import static
 
 
@@ -73,7 +73,6 @@ class PlaylistSongAdmin(admin.ModelAdmin):
     search_fields = ("name",)
     readonly_fields = ("thumbnail",)
     fieldsets = (
-
         (
             "GENERAL",
             {"fields": ("name", "user", "music")},
@@ -82,14 +81,11 @@ class PlaylistSongAdmin(admin.ModelAdmin):
             "INFO",
             {
                 "fields": (
-                    ("image", "cover_image", "thumbnail"),
-
-
+                    ("image", "thumbnail"),
                 )
             },
         ),
     )
-
     @staticmethod
     def thumbnail(obj):
         return format_html(
@@ -102,3 +98,4 @@ admin.site.register(Music, MusicAdmin)
 admin.site.register(Album, AlbumAdmin)
 admin.site.register(PlaylistSong, PlaylistSongAdmin)
 admin.site.register(Category)
+admin.site.register(LikedSong)

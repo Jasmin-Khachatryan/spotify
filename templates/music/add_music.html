@@ -61,8 +61,20 @@
                 <div class="input-data">
                     <div class="inner"></div>
                     <input type="submit" value="submit">
+
+                </div>
+            </div>
+            <div class="form-row submit-btn">
+                <div class="input-data">
+                    <div class="inner"></div>
+                    <a href="{% url 'user:profile' pk=user.id %}"><input type="button" value="Go Back"></a>
                 </div>
             </div>
         </div>
+
+            <div class="form-row submit-btn">
+
+            </div>
+
     </form>
 </div>

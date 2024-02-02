@@ -6,7 +6,7 @@
     width: fit-content;
     height: fit-content;
     position: relative;
-    margin-left:17%;
+    margin-left:200px;
   }
   .input-search{
     height: 50px;
@@ -20,7 +20,7 @@
     transition: all .5s ease-in-out;
     background-color: #22b35e;
     padding-right: 40px;
-    color:#080808;
+    color:white;
   }
   .input-search::placeholder{
     color:rgba(255,255,255,.5);

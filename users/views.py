@@ -6,7 +6,7 @@ from django.core.mail import EmailMessage
 from django.views.generic import FormView, DetailView, UpdateView, TemplateView
 from django.contrib.auth.views import LoginView as Login, LogoutView as Logout
 from django.contrib.auth import get_user_model
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.views.generic.edit import CreateView
 from django.conf import settings
 from helpers.mixins import OwnProFileMixin
@@ -110,7 +110,7 @@ class UserProfileView(DetailView):
 
 class UserUpdateView(OwnProFileMixin, UpdateView):
     model = User
-
+    success_url = reverse_lazy("user:profile pk=user.id ")
     def get_form_class(self):
 
         if self.request.user.is_artist:

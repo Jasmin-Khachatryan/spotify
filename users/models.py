@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.core.exceptions import ValidationError
+from django.urls import reverse
+
 from payment.models import Account
 
 
@@ -15,10 +17,13 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
+
     def create_superuser(self, email, password=None, **extra_fields):
         user = self.create_user(email, password, **extra_fields)
         user.is_staff = True
         user.is_superuser = True
+        user.is_active = True
         user.save(using=self._db)
 
         return user
@@ -40,3 +45,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse('user:profile', args=[str(self.pk)])

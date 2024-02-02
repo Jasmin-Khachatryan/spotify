@@ -1,0 +1,32 @@
+{% extends "main_base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/search_result.css' %}">
+<div class="spotify-playlists">
+    <h2 class="text center">Search Results</h2>
+
+    {% if albums %}
+    <div class="list">
+        {% for album in albums %}
+        <div class="item">
+            <a href="{% url 'music:album_detail' album.pk %}">
+                <img src="{{ album.image.url }}" />
+
+                <div class="play">
+                    <span class="fa fa-play"></span>
+
+                </div>
+                <h4>{{ album.name }}</h4>
+            </a>
+            <p>{{ album.description }}</p>
+
+        </div>
+        {% endfor %}
+        {% else %}
+            <h4>No product available</h4>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

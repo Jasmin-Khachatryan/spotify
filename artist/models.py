@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+
 from helpers.choices import GenderChoice
 from helpers.upload_image import upload_artist_image
 from music.models import Music
@@ -17,6 +19,9 @@ class Artist(models.Model):
     music = models.ManyToManyField(Music, related_name="artists")
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
 
+
     def __str__(self):
         return self.pseudonym or f"Artist {self.id}"
+
+
 

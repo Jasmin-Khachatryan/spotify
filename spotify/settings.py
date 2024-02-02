@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "django_celery_beat",
     "django_celery_results",
-    "search.apps.SearchConfig",
     "home.apps.HomeConfig",
     "music.apps.MusicConfig",
     "artist.apps.ArtistConfig",
