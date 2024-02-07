@@ -1,5 +1,5 @@
 {% load static %}
-    <link href="{% static "card.css" %}" rel="stylesheet">
+    <link href="{% static 'css/card.css' %}" rel="stylesheet">
     <div id="container">
 
 
@@ -16,8 +16,7 @@
                 <!-- Start Button buying -->
                 <button class="btn">
 
-
-                    <span class="buy">Log In</span>
+                    <a href="{% url 'payment:payment_detail' %}"><span class="buy">Premium</span></a>
                 </button>
 
 
@@ -27,7 +26,7 @@
 
         <div class="product-image">
 
-            <img src="C:\Users\Victu\Desktop\spotify-content\Девушка слушая нот — фото от Canva_files\canva-MADQ5J3AjzQ.jpg">
+            <img src="https://womenlovetech.com/wp-content/uploads/2020/12/adult-beautiful-blur-casual-374703-scaled.jpg">
 
         </div>
     </div>

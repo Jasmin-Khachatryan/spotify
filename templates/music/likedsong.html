@@ -35,37 +35,37 @@
             <img src="https://img.icons8.com/pastel-glyph/344/clock--v1.png" alt="">
         </div>
     </div>
-<hr class="divider">
-<div class="playlist__songlist">
-    {% for song in musics.music.all %}
-    <form method="post" action="{% url "music:remove_from_likedsongs" song_id=song.id %}">
-    {% csrf_token %}
-    <div class="playlist__song playlist__row" onclick='playSong("{{ song.file }}","false","true")'>
-        <div class="playlist__headerTitle">
-            <img class="playlist__albumimg" src="{{ song.image.url }}" alt =''/>
-            <a href="{% url 'music:detail' pk=song.pk %}">
-                <div class="playlist__songTitle ellipsis_one_line">
-                    {{song.name}}
-                </div>
-            </a>
-            <textarea name="song" id="song_name_delete" cols="1" rows="1">{{ song.name }}</textarea>
-            <audio id="myAudio" controls>
-                <source src="{{ song.file.url }}" type="audio/mpeg">
-            </audio>
-        </div>
-        <div class="playlist__headerAlbum ellipsis_one_line">{{ song.song_channel }}</div>
-        {% for artist in song.artists.all %}
-        <a href="{% url 'artist:artist_detail' pk=artist.pk %}">{{ artist.pseudonym }}
-            <div class="playlist__headerAlbum ellipsis_one_line"></div></a>
-        {% endfor %}
-        <div class="playlist__headerDate">{{ song.year }}</div>
-        <div class="playlist__headerDuration1">
-            {{ song.duration }}
-            <button type="submit">
-                <img src="https://cdn.discordapp.com/attachments/768083738848133130/777588678028951572/delete-icon-28.jpg" alt=""></button>
-        </div>            </div>
-</div>
-</form>
-{% endfor %}
+    <hr class="divider">
+    <div class="playlist__songlist">
+        {% for song in musics.music.all %}
+        <form method="post" action="{% url "music:remove_from_likedsongs" song_id=song.id %}">
+        {% csrf_token %}
+        <div class="playlist__song playlist__row" onclick='playSong("{{ song.file }}","false","true")'>
+            <div class="playlist__headerTitle">
+                <img class="playlist__albumimg" src="{{ song.image.url }}" alt =''/>
+                <a href="{% url 'music:detail' pk=song.pk %}">
+                    <div class="playlist__songTitle ellipsis_one_line">
+                        {{song.name}}
+                    </div>
+                </a>
+                <textarea name="song" id="song_name_delete" cols="1" rows="1">{{ song.name }}</textarea>
+                <audio id="myAudio" controls>
+                    <source src="{{ song.file.url }}" type="audio/mpeg">
+                </audio>
+            </div>
+            <div class="playlist__headerAlbum ellipsis_one_line">{{ song.song_channel }}</div>
+            {% for artist in song.artists.all %}
+            <a href="{% url 'artist:artist_detail' pk=artist.pk %}">{{ artist.pseudonym }}
+                <div class="playlist__headerAlbum ellipsis_one_line"></div></a>
+            {% endfor %}
+            <div class="playlist__headerDate">{{ song.year }}</div>
+            <div class="playlist__headerDuration1">
+                {{ song.duration }}
+                <button type="submit">
+                    <img src="https://cdn.discordapp.com/attachments/768083738848133130/777588678028951572/delete-icon-28.jpg" alt=""></button>
+            </div>            </div>
+    </div>
+    </form>
+    {% endfor %}
 </div>
 {% endblock %}

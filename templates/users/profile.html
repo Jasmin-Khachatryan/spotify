@@ -1,9 +1,6 @@
 
 {% load static %}
 
-
-
-
 <link rel="stylesheet" href="{% static "css/profile.css" %}">
 <main class="container">
     <div class="card">
@@ -21,10 +18,10 @@
           <span class="card__info__stats">172</span>
           <span>Playlist songs</span>
         </li>
-        <li>
-          <span class="card__info__stats">{{user.follows}}</span>
-          <span>following</span>
-        </li>
+<!--        <li>-->
+<!--          <span class="card__info__stats">{{user.follows}}</span>-->
+<!--          <span>following</span>-->
+<!--        </li>-->
       </ul>
       <div class="card__action">
         <a href="{% url "user:edit_profile" pk=user.pk %}"> <button class="card__action__button card__action--follow">Edit</button></a>

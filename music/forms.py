@@ -1,6 +1,5 @@
 from django import forms
 from .models import Music, Category
-from users.models import UserProfile
 
 
 class MusicAddForm(forms.ModelForm):
@@ -9,6 +8,9 @@ class MusicAddForm(forms.ModelForm):
 
     class Meta:
         model = Music
-
         fields = ("name", "category", "image", "cover_image", "description",
-          "year", "duration", "file")
+                  "year", "duration", "file")
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['artist'].widget.attrs['readonly'] = True

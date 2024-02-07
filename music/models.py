@@ -37,26 +37,34 @@ class PlaylistSong(models.Model):
     name = models.CharField(max_length=80, null=True, blank=True)
     image = models.ImageField(upload_to=upload_playlist_image, null=True, blank=True)
     music = models.ManyToManyField(Music, related_name="playlist_music")
+
     def __str__(self):
         return self.name
+
     @receiver(post_save, sender=User)
     def create_playlist_song(sender, instance, created, **kwargs):
         if created:
             PlaylistSong.objects.create(user=instance, name="My Playlist")
+
     @receiver(post_save, sender=User)
     def save_playlist_song(sender, instance, **kwargs):
         instance.playlistsong.save()
+
+
 class LikedSong(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     music = models.ManyToManyField(Music, related_name="liked_songs")
+
     def __str__(self):
         return self.user.first_name + "'s Liked Songs"
+
     @receiver(post_save, sender=User)
     def create_or_update_likedsong(sender, instance, created, **kwargs):
         if created:
             LikedSong.objects.create(user=instance)
         else:
             instance.likedsong.save()
+
 
 class Album(models.Model):
     name = models.CharField(max_length=20)

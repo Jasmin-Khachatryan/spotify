@@ -33,6 +33,7 @@ def create_checkout_session(request, pk):
 
     if account.name in ["Pro Students", "Pro Account", "Premium Account"]:
         user.is_premium_user = True
+        user.account = account
         user.save()
 
     session = stripe.checkout.Session.create(
@@ -49,6 +50,8 @@ def create_checkout_session(request, pk):
     account.save()
 
     return redirect(session.url, code=303)
+
+
 @method_decorator(login_required, name='dispatch')
 class SuccessView(TemplateView):
     template_name = 'home/home.html'
@@ -57,15 +60,14 @@ class SuccessView(TemplateView):
         session_id = request.GET.get('session_id')
         user = request.user
 
-
         if not user.is_premium_user:
             messages.error(request, 'Sorry. You are not authorized to view this page.')
             return redirect("home:home")
 
-
         messages.success(request, 'Thank you. Your payment was successfully processed and your premium status is now active!')
 
         return redirect("home:home")
+
 
 class CancelView(TemplateView):
     template_name = 'home/home.html'

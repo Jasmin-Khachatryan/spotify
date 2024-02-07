@@ -11,13 +11,10 @@ from django.views.generic.edit import CreateView
 from django.conf import settings
 from helpers.mixins import OwnProFileMixin
 from artist.models import Artist
-from django.shortcuts import get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
 from .forms import RegistrationForm, ProfileForm, ArtistProfileForm, EmailForm
 from .tasks import send_simple_email
 from .generate_token import account_activation_token
-from music.models import Music
+
 User = get_user_model()
 
 
@@ -111,6 +108,7 @@ class UserProfileView(DetailView):
 class UserUpdateView(OwnProFileMixin, UpdateView):
     model = User
     success_url = reverse_lazy("user:profile pk=user.id ")
+
     def get_form_class(self):
 
         if self.request.user.is_artist:
@@ -128,8 +126,6 @@ class UserUpdateView(OwnProFileMixin, UpdateView):
             initial["cover_photo"] = self.object.artist.cover_image
 
         return initial
-
-
 
     def form_valid(self, form):
         user_instance = form.save(commit=False)

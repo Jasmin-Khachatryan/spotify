@@ -11,6 +11,3 @@ class ArtistDetailView(DetailView):
 
     def get_queryset(self):
         return Artist.objects.select_related("user").prefetch_related("music").order_by("pk")
-
-
-

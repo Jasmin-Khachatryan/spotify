@@ -35,6 +35,3 @@ def searchBar(request):
             return render(request, "home/search_result.html", {'albums': products})
         else:
             return render(request, "home/search_result.html", {})
-
-
-

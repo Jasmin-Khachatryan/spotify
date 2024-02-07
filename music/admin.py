@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from music.models import Music, Category, Album, PlaylistSong,LikedSong
+from music.models import Music, Category, Album, PlaylistSong, LikedSong
 from django.templatetags.static import static
 
 
@@ -86,6 +86,7 @@ class PlaylistSongAdmin(admin.ModelAdmin):
             },
         ),
     )
+
     @staticmethod
     def thumbnail(obj):
         return format_html(

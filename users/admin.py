@@ -5,13 +5,14 @@ from django.templatetags.static import static
 
 
 class UserAdmin(admin.ModelAdmin):
+
     list_display = ("email", "first_name", "last_name")
     search_fields = ("pseudonym",)
-    readonly_fields = ("email", "is_artist", "thumbnail")
+    readonly_fields = ("email", "is_artist", "thumbnail", "account", "is_premium_user")
     fieldsets = (
         (
             "GENERAL",
-            {"fields": ("email","password", "first_name", "last_name")},
+            {"fields": ("email", "password", "first_name", "last_name")},
         ),
         (
             "INFO",
@@ -22,6 +23,7 @@ class UserAdmin(admin.ModelAdmin):
                     "is_active",
                     "is_artist",
                     "is_premium_user",
+                    "account",
 
                 )
             },
@@ -37,4 +39,3 @@ class UserAdmin(admin.ModelAdmin):
 
 
 admin.site.register(User, UserAdmin)
-

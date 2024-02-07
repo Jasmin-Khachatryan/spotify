@@ -6,4 +6,3 @@ from artist.models import Artist
 class ArtistListCreateAPIView(ListCreateAPIView):
     queryset = Artist.objects.all()
     serializer_class = ArtistSerializer
-

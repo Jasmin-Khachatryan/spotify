@@ -1,13 +1,16 @@
 from django.views import View
+from django.utils.decorators import method_decorator
 from django.db.models import Q
 from .models import Music, Album, PlaylistSong, LikedSong
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import DetailView, FormView, UpdateView,DeleteView
+from django.views.generic import DetailView, FormView, UpdateView, DeleteView
 from artist.models import Artist
 from .forms import MusicAddForm
 from users.models import User
+from helpers.decorators import premium_user_required
+from django.http import HttpResponseRedirect
 
 
 class MusicDetailView(DetailView):
@@ -35,18 +38,15 @@ class AddMusicView(FormView):
 
     def form_valid(self, form):
         music_instance = form.save()
+        artist_instance, created = Artist.objects.get_or_create(user=self.request.user)
+        artist_instance.music.add(music_instance)
+        return HttpResponseRedirect(self.get_success_url())
 
-        artist_id = self.request.POST.get('artist', None)
-        if artist_id:
-            artist_instance = get_object_or_404(Artist, id=artist_id)
-            artist_instance.music.add(music_instance)
-
-        album_id = self.request.POST.get('album', None)
-        if album_id:
-            album_instance = get_object_or_404(Album, id=album_id)
-            album_instance.music.add(music_instance)
-
-        return super().form_valid(form)
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        artist_instance, created = Artist.objects.get_or_create(user=self.request.user)
+        kwargs['initial']['artist'] = artist_instance.pseudonym
+        return kwargs
 
 
 def playlist_searchBar(request):
@@ -55,7 +55,7 @@ def playlist_searchBar(request):
         if query:
             playlists = Music.objects.filter(
                 Q(name__icontains=query) |
-                Q(year__icontains=query)|
+                Q(year__icontains=query) |
                 Q(description__icontains=query)
                 )
             return render(request, "music/playlist_search.html", {'songs': playlists})
@@ -96,17 +96,22 @@ class UpdateMusicView(UpdateView):
 
         return super().form_valid(form)
 
+
 class DeleteMusicView(DeleteView):
     model = Music
     success_url = reverse_lazy("user:profile pk=user.id ")
     template_name = "music/confirm_delete.html"
 
+
+@method_decorator(premium_user_required, name='dispatch')
 class AddToPlaylist(LoginRequiredMixin, View):
     def post(self, request, music_id):
         music = get_object_or_404(Music, id=music_id)
         playlist, created = PlaylistSong.objects.get_or_create(user=request.user, defaults={'name': 'Default Playlist'})
         playlist.music.add(music)
         return redirect("music:playlist", pk=request.user.pk)
+
+
 class RemoveFromPlaylistView(LoginRequiredMixin, View):
     def post(self, request, song_id):
         music = get_object_or_404(Music, id=song_id)
@@ -114,12 +119,17 @@ class RemoveFromPlaylistView(LoginRequiredMixin, View):
         if music in playlist.music.all():
             playlist.music.remove(music)
         return redirect("music:playlist", pk=request.user.pk)
+
+
+@method_decorator(premium_user_required, name='dispatch')
 class AddToLikedSongView(DetailView):
     def post(self, request, music_id):
         music = get_object_or_404(Music, id=music_id)
         liked_songs, created = LikedSong.objects.get_or_create(user=request.user,)
         liked_songs.music.add(music)
         return redirect("music:liked_songs", pk=request.user.pk)
+
+
 class RemoveFromLikedSongView(LoginRequiredMixin, View):
     def post(self, request, song_id):
         music = get_object_or_404(Music, id=song_id)
@@ -146,6 +156,7 @@ class PlayListView(DetailView):
     template_name = "music/playlist.html"
     context_object_name = "user_musics"
     pk_url_kwarg = "pk"
+
     def get_object(self, queryset=None):
         user = get_object_or_404(User, pk=self.kwargs.get('pk'))
         playlist, created = PlaylistSong.objects.get_or_create(user=user, defaults={'name': 'Default Playlist'})
